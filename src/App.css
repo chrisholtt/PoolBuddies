@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: rgb(48,61,91);
+background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar{
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 60px;
+  /* frosted effect */
+background: rgba(255, 255, 255, 0.01);
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+}
+
+.navbar ul {
+  list-style-type: none;
+}
+
+.navbar div {
+  display: flex;
+  align-items: center;
+}
+
+.navbar div li {
+  padding: 10px;
+  
+}
+
+
+.pool-logo{
+  width: 40px;
+}
+
+.active {
+  color: wheat;
+}
+
+
+.connect-btn {
+  display: flex;
+  cursor: pointer;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  border-radius: 50px;
+  width: 150px;
+  height: 35px;
+  background: wheat;
+  border: none;
 }
 
-.App-link {
-  color: #61dafb;
+.connected-symbol {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid whitesmoke;
+  background: greenyellow;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.polygon-symbol {
+  width: 20px;
 }
