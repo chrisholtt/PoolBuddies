@@ -7,6 +7,15 @@ import file from '../utils/portal';
 import TokenModal from '../components/TokenModal';
 
 const Swap = ({tokens, user}) => {
+    
+
+
+    // useEffect(() => {
+    //     fetch(`https://api.coingecko.com/api/v3/coins/${tokenFrom}/market_chart/range?vs_currency=usd&from=1663589528&to=1664197935`)
+    //     .then(res => res.json())
+    //     .then(data => setTokens(data.tokens))
+    //   })
+    
 
     const qs = require('qs');
     const Web3 = require('web3');
@@ -42,7 +51,8 @@ const Swap = ({tokens, user}) => {
     async function handlePriceEstimate() {
         if (!tokenFrom || !tokenTo) return
         let amount = fromAmount * 10 ** tokenFrom.decimals
-        console.log(amount)
+        // console.log(amount)
+        console.log("token from", tokenFrom)
 
         const params = {
             sellToken: tokenFrom.address,
@@ -52,17 +62,17 @@ const Swap = ({tokens, user}) => {
 
         const response = await fetch(`https://api.0x.org/swap/v1/price?${qs.stringify(params)}`)
         const priceJSON = await response.json();
-        console.log("fetching price", priceJSON)
+        // console.log("fetching price", priceJSON)
         setToAmount(priceJSON.buyAmount / (10 ** tokenTo.decimals))
     }
 
     async function getQuote(account) {
         if (!tokenFrom || !tokenTo || !user) return
 
-        console.log("getting quote")
+        // console.log("getting quote")
 
         let amount = fromAmount * 10 ** tokenFrom.decimals
-        console.log(amount)
+        // console.log(amount)
 
         const params = {
             sellToken: tokenFrom.address,

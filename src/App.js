@@ -25,7 +25,6 @@ function App() {
     .then(data => setTokens(data.tokens))
   })
 
-
   const [userObj, setUserObj] = useState({
     isConnected: false,
     address: "",
