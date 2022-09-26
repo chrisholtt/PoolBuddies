@@ -5,6 +5,11 @@
   font-family: 'Roboto', sans-serif;
 }
 
+
+
+
+
+
 body {
   background: rgb(48,61,91);
 background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
@@ -21,6 +26,7 @@ background: rgba(255, 255, 255, 0.01);
 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 backdrop-filter: blur(10px);
 -webkit-backdrop-filter: blur(10px);
+color: #f5deb3;
 }
 
 .navbar ul {
@@ -38,12 +44,12 @@ backdrop-filter: blur(10px);
 }
 
 
-.pool-logo{
-  width: 40px;
+.logo{
+  width: 30px;
 }
 
 .active {
-  color: wheat;
+  color: #F0A9F8;
 }
 
 

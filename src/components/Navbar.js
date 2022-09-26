@@ -1,75 +1,59 @@
 import React from 'react'
-import { useMoralis } from "react-moralis";
 import { NavLink } from 'react-router-dom'
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
+import { faWallet } from '@fortawesome/free-solid-svg-icons'
 
 
 
-const Navbar = ({ userAddress, handleUserSignIn, userBalance }) => {
+const Navbar = ({ userObj, handleUserSignIn, onConnect, disconnectUser }) => {
 
-    const { authenticate, isAuthenticated, isAuthenticating, user, account, logout } = useMoralis();
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            // add your logic here
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isAuthenticated]);
-
-    const login = async () => {
-        await authenticate({ signingMessage: "Log in using Moralis" })
-            .then(function (user) {
-                console.log("logged in user:", user);
-                handleUserSignIn(user.get("ethAddress"));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
-    const logOut = async () => {
-        await logout();
-        handleUserSignIn("");
-        console.log("logged out");
-    }
 
     const UserAddressString = () => {
-        if (userAddress) {
-            return `${userAddress[0]}${userAddress[1]}${userAddress[2]}${userAddress[3]}...${userAddress[userAddress.length - 4]}${userAddress[userAddress.length - 3]}${userAddress[userAddress.length - 2]}${userAddress[userAddress.length - 1]}`
+        if (userObj) {
+            return `${userObj.address[0]}${userObj.address[1]}${userObj.address[2]}${userObj.address[3]}...${userObj.address[userObj.address.length - 4]}${userObj.address[userObj.address.length - 3]}${userObj.address[userObj.address.length - 2]}${userObj.address[userObj.address.length - 1]}`
         }
     }
-
-
-
-
 
     return (
         <nav className='navbar'>
             <ul>
                 <div>
-                    <li><NavLink to="/" style={{ textDecoration: 'none', display: "flex", alignItems: "center" }}><img src="/static/pool-logo.svg" alt="pool-logo" className='pool-logo' /><h1>PoolBuddies</h1></NavLink></li>
-                    <li><NavLink to="/swap" activeClassName="active" style={{ textDecoration: 'none' }}><h1>Swap</h1></NavLink></li>
-                    <li><NavLink to="/pools" style={{ textDecoration: 'none' }}><h1>Pools</h1></NavLink></li>
-                    <li><NavLink to="/nft" style={{ textDecoration: 'none' }}><h1>NFT</h1></NavLink></li>
+                    <li><NavLink to="/" className="navlink" style={{ textDecoration: 'none', display: "flex", alignItems: "center", color: "#f5deb3" }}><img src="/static/buddie-logo.svg" alt="logo" className='logo' /><h1>PoolBuddies</h1></NavLink></li>
+                    <li><NavLink to="/swap" activeClassName="active" style={{ textDecoration: 'none', color: "#f5deb3" }}><h1>Swap</h1></NavLink></li>
+                    <li><NavLink to="/pools" style={{ textDecoration: 'none', color: "#f5deb3" }}><h1>Pools</h1></NavLink></li>
+                    <li><NavLink to="/nft" style={{ textDecoration: 'none', color: "#f5deb3" }}><h1>NFT</h1></NavLink></li>
                 </div>
             </ul>
 
-            <FontAwesomeIcon icon={faGear} />
             <ul>
                 <div>
-                    {userAddress ?
+                    <li>
+                        <FontAwesomeIcon icon={faGear} />
+                    </li>
+                    {userObj.isConnected ?
                         <div>
-                            <div className='connected-symbol'></div>
-                            <img src="/static/polygon-symbol.svg" alt="" className='polygon-symbol' />
-                            <h2>{userBalance}</h2>
-                            <button onClick={logOut} disabled={isAuthenticating} className="connect-btn" ><UserAddressString /></button>
+
+                            <div>
+                                <img src="/static/polygon-symbol.svg" alt="" className='polygon-symbol' />
+                                <h2>{userObj.balance}</h2>
+                            </div>
+                            <li>
+                                <div className='connected-symbol'></div>
+                            </li>
+                            <button onClick={() => disconnectUser()} className="connect-btn" >
+                                <FontAwesomeIcon icon={faWallet} />
+                                <UserAddressString />
+                            </button>
                         </div>
+
                         :
-                        <div>
-                            <button className="connect-btn" onClick={login}>Connect Wallet</button>
-                        </div>
+                        <li>
+                            <div>
+                                <button className="connect-btn" onClick={onConnect}>Connect Wallet</button>
+                            </div>
+                        </li>
                     }
                 </div>
             </ul>
