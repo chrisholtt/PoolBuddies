@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 // import Moralis from 'moralis-v1';
 // import { useMoralis } from "react-moralis";
 import Web3 from 'web3'
+import Octopus from './components/Octopus';
 
 
 function App() {
@@ -100,6 +101,7 @@ function App() {
   return (
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
+      <Octopus/>
       <Routes>
         <Route path="/swap" element={<Swap />} />
         <Route path="/pools" element={<Pools />} />
