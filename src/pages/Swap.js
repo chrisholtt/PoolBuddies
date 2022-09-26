@@ -23,6 +23,22 @@ const Swap = ({tokens, user}) => {
     const Web3 = require('web3');
     const BigNumber = require('bignumber.js');
 
+    const [isHovering, setIsHovering] = useState(false);
+
+    const handleMouseOver = () => {
+        setIsHovering(true)
+    }
+
+    const handleMouseOut = () => {
+        setIsHovering(false)
+    }
+
+    const handleClick = () => {
+        const tok1 = tokenFrom;
+        const tok2 = tokenTo;
+        setTokenFrom(tok2)
+        setTokenTo(tok1)
+    }
 
     // Swap amount 
     const [fromAmount, setFromAmount] = useState(null);
@@ -119,12 +135,12 @@ const Swap = ({tokens, user}) => {
 
     const receipt = await web3.eth.sendTransaction(swapQuoteJSON);
     console.log("receipt: ", receipt);
+
+    
 }
 
 
     return (
-
-        // <script src="https://kit.fontawesome.com/4e5ee99e1a.js" crossorigin="anonymous"></script>
         <div className='swap-modal-wrapper'>
     
               <Box className='swap-modal'>
@@ -140,9 +156,12 @@ const Swap = ({tokens, user}) => {
                             </div>
                             {tokens.length && <TokenModal tokenOpen={tokenOpenFrom} handleTokenModal={handleTokenModalFrom} tokens={tokens} handleTokenFromChange={handleTokenFromChange} />}
                         </Box>
+                        {!isHovering &&
+                        <button onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown}/></button>
+                    }{isHovering &&
+                        <button onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowsUpDown} /></button>
+                     }
                         
-                        <FontAwesomeIcon icon={faArrowDown}/>
-                        <FontAwesomeIcon icon={faArrowsUpDown} />
 
                         <Box className='swap-box'>
                             <input type="text" placeholder='0.0' value={toAmount} />
