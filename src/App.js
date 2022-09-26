@@ -13,6 +13,19 @@ import Web3 from 'web3'
 
 function App() {
 
+
+
+  const [tokens, setTokens] = useState([]);
+
+
+
+  useEffect(() => {
+    fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org')
+    .then(res => res.json())
+    .then(data => setTokens(data.tokens))
+  })
+
+
   const [userObj, setUserObj] = useState({
     isConnected: false,
     address: "",
@@ -101,7 +114,7 @@ function App() {
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
       <Routes>
-        <Route path="/swap" element={<Swap />} />
+        <Route path="/swap" element={<Swap tokens={tokens} user={userObj}/>} />
         <Route path="/pools" element={<Pools />} />
         <Route path="/nft" element={<Nft />} />
       </Routes>

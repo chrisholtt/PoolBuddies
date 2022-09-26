@@ -76,3 +76,76 @@ color: #f5deb3;
 .polygon-symbol {
   width: 20px;
 }
+
+.swap-modal-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 60%
+}
+
+
+.swap-modal{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 500px;
+  height: 500px;
+  padding: 10px;
+  background: rgba(88, 198, 241, 0.01);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.swap-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.05);
+  height: 80px;
+  border-radius: 16px;
+}
+
+.swap-box input {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  position: relative;
+  left: 15%;
+  
+}
+
+.token{
+  border-radius: 16px;
+  display: flex;
+  width: 80%;
+  padding: 5px;
+  margin: 5px;
+}
+
+.token:hover {
+  background: rgb(228, 228, 228);
+}
+
+.token-dropdown {
+  width: 100px;
+  height: 60px;
+  border-radius: 16px;
+  /* background: red; */
+  box-shadow: 4px 4px 10px #24242454;
+}
+
+.token-nodes{
+  height: 80%;
+  overflow: scroll;
+}
