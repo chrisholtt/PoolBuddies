@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import file from '../utils/portal';
 import TokenModal from '../components/TokenModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faArrowsUpDown } from '@fortawesome/free-solid-svg-icons';
 
 const Swap = ({tokens, user}) => {
     
@@ -139,8 +141,8 @@ const Swap = ({tokens, user}) => {
                             {tokens.length && <TokenModal tokenOpen={tokenOpenFrom} handleTokenModal={handleTokenModalFrom} tokens={tokens} handleTokenFromChange={handleTokenFromChange} />}
                         </Box>
                         
-                        {/* <FontAwesomeIcon icon="fa-solid fa-arrow-down" />
-                        <FontAwesomeIcon icon="fa-solid fa-arrows-up-down" /> */}
+                        <FontAwesomeIcon icon={faArrowDown}/>
+                        <FontAwesomeIcon icon={faArrowsUpDown} />
 
                         <Box className='swap-box'>
                             <input type="text" placeholder='0.0' value={toAmount} />
