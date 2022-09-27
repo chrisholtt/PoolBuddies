@@ -93,7 +93,7 @@ function App() {
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
       <Routes>
-        <Route path="/home" element={<Home />}/>
+        <Route path="/" element={<Home />}/>
         <Route path="/swap" element={<Swap tokens={tokens} user={userObj}/>} />
         <Route path="/pools" element={<Pools />} />
         <Route path="/nft" element={<Nft />} />
