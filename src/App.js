@@ -7,15 +7,13 @@ import Nft from './pages/Nft';
 import { useEffect, useState } from 'react';
 import Web3 from 'web3'
 import Home from './pages/Home';
+import CryptoTicker from './components/CryptoTicker';
+import CryptoTickerItem from './components/CryptoTickerItem';
 
 
 function App() {
 
-
-
   const [tokens, setTokens] = useState([]);
-
-
 
   useEffect(() => {
     fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org')
@@ -92,6 +90,7 @@ function App() {
   return (
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
+      <CryptoTicker/>
       <Routes>
         <Route path="/home" element={<Home />}/>
         <Route path="/swap" element={<Swap tokens={tokens} user={userObj}/>} />
