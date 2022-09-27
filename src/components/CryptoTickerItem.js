@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import '../stylesheets/Ticker.css'
 
 
 const CryptoTickerItem = ({name, price, change}) => {
+
 
 
 
@@ -11,7 +12,7 @@ const CryptoTickerItem = ({name, price, change}) => {
         <>  
         <div className="item">
             <h3>{name}</h3>
-            <h3>{change}%</h3>
+            <h3 className={change > 0 ? "green" : "red" }>{change}%</h3>
         </div>
 
         
