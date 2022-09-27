@@ -155,7 +155,7 @@ const Swap = ({tokens, user}) => {
                         </Typography>
 
                         <Box className='swap-box'>
-                            <input type="text" placeholder='0.0' onKeyDown={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
+                            <input className='token-input' type="text" placeholder='0.0' onKeyDown={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
                             <div onClick={handleTokenModalFrom} className='token-dropdown'>
                                 {tokenFrom ? <img className='swapIMG' src={tokenFrom.logoURI}></img> : <h2>🔁</h2>}
                                 <h2>{tokenFrom && tokenFrom.symbol}</h2>
@@ -170,7 +170,7 @@ const Swap = ({tokens, user}) => {
                         
 
                         <Box className='swap-box'>
-                            <input type="text" placeholder='0.0' value={toAmount} />
+                            <input className='token-input' type="text" placeholder='0.0' value={toAmount} />
                             <div onClick={handleTokenModalTo} className='token-dropdown'>
                             {tokenTo ? <img className='swapIMG' src={tokenTo.logoURI}></img> : <h2>🔁</h2>}
                                 <h2>{tokenTo && tokenTo.symbol}</h2>
