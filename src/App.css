@@ -150,7 +150,7 @@ color: #f5deb3;
 .token-nodes{
   height: 80%;
   overflow: scroll;
-  background-color: #5f0a69;
+  background-color: rgb(190, 189, 189);
 }
 
 .swapIMG{

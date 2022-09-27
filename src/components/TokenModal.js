@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 const style = {
@@ -83,9 +85,9 @@ function TokenModal({ tokenOpen, handleTokenModal, tokens, handleTokenFromChange
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
-                    <button onClick={handleClose}>close</button>
-                    <input autoFocus="true" type="text" placeholder='search ticker' value={tokenSearch} onChange={handleTokenSearch} />
+                <Box sx={style} className='token-nodes'>
+                    <button onClick={handleClose}><FontAwesomeIcon icon={faCircleXmark}/></button>
+                    <input autoFocus="true" type="text" placeholder='Search Library' value={tokenSearch} onChange={handleTokenSearch} />
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Select a token
                     </Typography>
