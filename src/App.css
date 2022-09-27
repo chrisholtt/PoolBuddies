@@ -7,9 +7,6 @@
 
 
 
-
-
-
 body {
   background: rgb(48,61,91);
 background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
@@ -164,3 +161,12 @@ color: #f5deb3;
   border-radius: 2rem;
 }
 
+.lotto-card{
+  width: 200px;
+  height: 230px;
+  background: white;
+}
+
+.pool-balance{
+  display: flex;
+}
