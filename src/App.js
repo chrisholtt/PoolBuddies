@@ -7,8 +7,7 @@ import Nft from './pages/Nft';
 import { useEffect, useState } from 'react';
 import Web3 from 'web3'
 
-import createContract5 from './contracts/lotteryContract5'
-=======
+import createContract5 from './contracts/lotteryContract5';
 import Home from './pages/Home';
 
 
