@@ -9,24 +9,20 @@ export default function Octopus() {
 
     function onLoad(spline) {
         const obj = spline.findObjectByName('octopus');
-        // or
-        // const obj = spline.findObjectById('8E8C2DDD-18B6-4C54-861D-7ED2519DE20E');
-    
-        // save it in a ref for later use
         octopus.current = obj;
       }
 
       function moveObj() {
-        console.log(octopus.current); // Spline Object => { name: 'Cube', id: '8E8C2DDD-18B6-4C54-861D-7ED2519DE20E', position: {}, ... }
-    
-        // move the object in 3D space
+        console.log(octopus.current); 
         octopus.current.position.x += 10;
       }
     
   return (
     <>
-    <div className='octopus'>
-        <Spline scene="https://prod.spline.design/ka4X2Z4nx5UBPTEB/scene.splinecode" onLoad={onLoad}/>
+    <div className='octopus-div'>
+        {/* <Spline scene="https://prod.spline.design/ka4X2Z4nx5UBPTEB/scene.splinecode" onLoad={onLoad} moveObj={moveObj}/>
+        <iframe src='https://my.spline.design/untitled-af7e234bef0a2a24d362d1313dbc1b51/' frameborder='0' width='100%' height='100%'></iframe> */}
+        <img src='/static/Octopus.jpg' className='octopus' />
     </div>
     
     </>  
