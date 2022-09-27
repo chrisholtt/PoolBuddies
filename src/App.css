@@ -151,7 +151,9 @@ color: #f5deb3;
 .token-nodes{
   height: 80%;
   overflow: scroll;
-  background-color: rgb(190, 189, 189);
+  background: rgb(48,61,91);
+  background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
+  color: #f5deb3;
 }
 
 .swapIMG{
@@ -160,7 +162,24 @@ color: #f5deb3;
 }
 
 .MuiBox-root.css-kbsmes{
-  background-color: rgb(190, 189, 189);
+  background: rgb(48,61,91);
+  background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
   border-radius: 2rem;
+}
+
+#modal-modal-title{
+  color: #f5deb3;
+}
+
+.token-button{
+  background: rgb(48,61,91);
+  background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
+  color: #f5deb3;
+  width: 30px;
+  height: 30px;
+  border-radius: 1rem;
+  border: 1px;
+  border-color: black;
+  cursor: pointer;
 }
 
