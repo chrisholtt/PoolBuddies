@@ -187,3 +187,9 @@ color: #f5deb3;
   color: #f5deb3
 }
 
+.coin-chart{
+  position:absolute;
+  top: 50%;
+  right: 70%;
+}
+

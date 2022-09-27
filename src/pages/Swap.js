@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowsUpDown } from '@fortawesome/free-solid-svg-icons';
 import CoinChart from '../components/CoinChart';
 
-const Swap = ({tokens, user, chartData}) => {
+const Swap = ({tokens, user}) => {
     
     const qs = require('qs');
     const Web3 = require('web3');
@@ -62,7 +62,7 @@ const Swap = ({tokens, user, chartData}) => {
         if (!tokenFrom || !tokenTo) return
         let amount = fromAmount * 10 ** tokenFrom.decimals
         // console.log(amount)
-        console.log("token from", tokenFrom)
+        // console.log("token from", tokenFrom.name.toLowerCase())
 
         const params = {
             sellToken: tokenFrom.address,
@@ -108,12 +108,12 @@ const Swap = ({tokens, user, chartData}) => {
 
         // Pulls in any address / most recent used account.
         let accounts = await window.ethereum.request({ method: "eth_accounts" });
-        console.log("window.eth", accounts[0]);
-        console.log("user", user)
+        // console.log("window.eth", accounts[0]);
+        // console.log("user", user)
 
         let takerAddress = accounts[0];
         const swapQuoteJSON = await getQuote(takerAddress);
-        console.log(swapQuoteJSON)
+        // console.log(swapQuoteJSON)
 
         // Set token allowance 
         const web3 = new Web3(Web3.givenProvider);
@@ -132,7 +132,7 @@ const Swap = ({tokens, user, chartData}) => {
         .then(tx => console.log("tx: ", tx))
 
     const receipt = await web3.eth.sendTransaction(swapQuoteJSON);
-    console.log("receipt: ", receipt);
+    // console.log("receipt: ", receipt);
 
     
 }
@@ -144,16 +144,13 @@ const [chartData, setChartData] = useState(null)
     fetch(url)
       .then(res => res.json())
       .then(data => setChartData(data))
+      console.log("chart-data", chartData)
+      console.log(tokenFrom.name)
   }
 
   useEffect(() => {
-    if (tokenFrom == null) {
-      return
-    }
-    else if (tokenFrom.length) {
-      const coinString = tokenFrom.name
+      const coinString = tokenFrom.name.toLowerCase()
       fetchChartData(coinString)
-    }
   }, [tokenFrom])
   
 

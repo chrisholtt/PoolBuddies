@@ -4,6 +4,7 @@ import HighchartsReact from 'highcharts-react-official'
 
 const CoinChart = ({chartData, tokenFrom}) => {
 
+    
     const options = {
         title: {
             text: 'Stock Value over Time',
@@ -31,18 +32,22 @@ const CoinChart = ({chartData, tokenFrom}) => {
         series: [
         {
             data: chartData,
-            name: `${tokenFrom.symbol}`,
+            name: `stonks`,
 
         }
         ]
     };
   return (
-    <HighchartsReact 
+    <div className='coin-chart'>
+    {tokenFrom ?
+        <HighchartsReact
             highcharts={Highcharts} 
             constructorType={'stockChart'}
             options={options}
-            />
+            /> 
+        : <div>"Null" </div>}
+        </div>
   )
 }
 
-export default CoinChart
+export default CoinChart;
