@@ -10,12 +10,8 @@ import Home from './pages/Home';
 
 
 function App() {
-
-
-
+  
   const [tokens, setTokens] = useState([]);
-
-
 
   useEffect(() => {
     fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org')
@@ -94,7 +90,7 @@ function App() {
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
       <Routes>
         <Route path="/home" element={<Home />}/>
-        <Route path="/swap" element={<Swap tokens={tokens} user={userObj}/>} />
+        <Route path="/swap" element={<Swap tokens={tokens} user={userObj} chartData={chartData}/>} />
         <Route path="/pools" element={<Pools />} />
         <Route path="/nft" element={<Nft />} />
       </Routes>

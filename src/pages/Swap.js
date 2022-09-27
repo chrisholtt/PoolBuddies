@@ -7,18 +7,10 @@ import file from '../utils/portal';
 import TokenModal from '../components/TokenModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowsUpDown } from '@fortawesome/free-solid-svg-icons';
+import CoinChart from '../components/CoinChart';
 
-const Swap = ({tokens, user}) => {
+const Swap = ({tokens, user, chartData}) => {
     
-
-
-    // useEffect(() => {
-    //     fetch(`https://api.coingecko.com/api/v3/coins/${tokenFrom}/market_chart/range?vs_currency=usd&from=1663589528&to=1664197935`)
-    //     .then(res => res.json())
-    //     .then(data => setTokens(data.tokens))
-    //   })
-    
-
     const qs = require('qs');
     const Web3 = require('web3');
     const BigNumber = require('bignumber.js');
@@ -145,10 +137,29 @@ const Swap = ({tokens, user}) => {
     
 }
 
+const [chartData, setChartData] = useState(null)
+
+  const fetchChartData = (id) => {
+    const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=hourly`
+    fetch(url)
+      .then(res => res.json())
+      .then(data => setChartData(data))
+  }
+
+  useEffect(() => {
+    if (tokenFrom == null) {
+      return
+    }
+    else if (tokenFrom.length) {
+      const coinString = tokenFrom.name
+      fetchChartData(coinString)
+    }
+  }, [tokenFrom])
+  
 
     return (
         <div className='swap-modal-wrapper'>
-    
+              <CoinChart chartData={chartData} tokenFrom={tokenFrom}/>
               <Box className='swap-modal'>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
                             Token Swap
