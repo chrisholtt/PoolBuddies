@@ -91,24 +91,6 @@ function App() {
     })
   }
 
-
-
-  // const fetchTokenBalances = async () => {
-  //   const balances = await Web3Api.account.getTokenBalances();
-  //   const response = await balances[0]
-
-  //   if (response.symbol === "MATIC") {
-  //     let balance = response.balance / 10 ** response.decimals
-  //     handleBalanceUpdate(balance.toFixed(2))
-  //   }
-  // };
-
-  // fetchTokenBalances()
-
-
-
-
-
   return (
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />

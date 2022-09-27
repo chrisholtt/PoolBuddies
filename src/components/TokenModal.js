@@ -85,7 +85,7 @@ function TokenModal({ tokenOpen, handleTokenModal, tokens, handleTokenFromChange
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style} className='token-nodes'>
+                <Box sx={style}>
                     <button onClick={handleClose}><FontAwesomeIcon icon={faCircleXmark}/></button>
                     <input autoFocus="true" type="text" placeholder='Search Library' value={tokenSearch} onChange={handleTokenSearch} />
                     <Typography id="modal-modal-title" variant="h6" component="h2">

@@ -80,7 +80,7 @@ color: #f5deb3;
 .swap-modal-wrapper {
   position: absolute;
   top: 50%;
-  left: 60%
+  left: 70%
 }
 
 
@@ -104,6 +104,7 @@ color: #f5deb3;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f5deb3;
 }
 
 .swap-box {
@@ -139,12 +140,12 @@ color: #f5deb3;
 }
 
 .token-dropdown {
-  width: 100px;
+  width: 80px;
   height: 60px;
   border-radius: 16px;
   /* background: red; */
   box-shadow: 4px 4px 10px #24242454;
-  margin-left: 90px;
+  margin-left: 80px;
 }
 
 .token-nodes{
@@ -156,5 +157,10 @@ color: #f5deb3;
 .swapIMG{
   height: 20px;
   width: 20px;
+}
+
+.MuiBox-root.css-kbsmes{
+  background-color: rgb(190, 189, 189);
+  border-radius: 2rem;
 }
 
