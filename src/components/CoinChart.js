@@ -32,7 +32,7 @@ const CoinChart = ({chartData, tokenFrom}) => {
         series: [
         {
             data: chartData,
-            name: `stonks`,
+            name: `${tokenFrom.symbol}`,
 
         }
         ]
