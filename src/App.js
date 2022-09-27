@@ -5,14 +5,23 @@ import Swap from './pages/Swap';
 import Pools from './pages/Pools';
 import Nft from './pages/Nft';
 import { useEffect, useState } from 'react';
-// import { useMoralisWeb3Api } from "react-moralis";
-// import Moralis from 'moralis-v1';
-// import { useMoralis } from "react-moralis";
 import Web3 from 'web3'
 import Home from './pages/Home';
 
 
 function App() {
+
+
+
+  const [tokens, setTokens] = useState([]);
+
+
+
+  useEffect(() => {
+    fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org')
+    .then(res => res.json())
+    .then(data => setTokens(data.tokens))
+  })
 
   const [userObj, setUserObj] = useState({
     isConnected: false,
@@ -80,34 +89,15 @@ function App() {
     })
   }
 
-
-
-  // const fetchTokenBalances = async () => {
-  //   const balances = await Web3Api.account.getTokenBalances();
-  //   const response = await balances[0]
-
-  //   if (response.symbol === "MATIC") {
-  //     let balance = response.balance / 10 ** response.decimals
-  //     handleBalanceUpdate(balance.toFixed(2))
-  //   }
-  // };
-
-  // fetchTokenBalances()
-
-
-
-
-
   return (
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
       <Routes>
         <Route path="/home" element={<Home />}/>
-        <Route path="/swap" element={<Swap />} />
+        <Route path="/swap" element={<Swap tokens={tokens} user={userObj}/>} />
         <Route path="/pools" element={<Pools />} />
         <Route path="/nft" element={<Nft />} />
       </Routes>
-
     </>
   );
 }
