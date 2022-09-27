@@ -5,11 +5,12 @@ import Swap from './pages/Swap';
 import Pools from './pages/Pools';
 import Nft from './pages/Nft';
 import { useEffect, useState } from 'react';
-// import { useMoralisWeb3Api } from "react-moralis";
-// import Moralis from 'moralis-v1';
-// import { useMoralis } from "react-moralis";
 import Web3 from 'web3'
+
 import createContract5 from './contracts/lotteryContract5'
+=======
+import Home from './pages/Home';
+
 
 
 function App() {
@@ -102,11 +103,15 @@ function App() {
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
       <Routes>
+     
         <Route path="/swap" element={<Swap tokens={tokens} user={userObj} />} />
         <Route path="/pools" element={<Pools lotteryContract5={lotteryContract5} userObj={userObj} web3={web3} />} />
+
+        <Route path="/" element={<Home />}/>
+        <Route path="/swap" element={<Swap tokens={tokens} user={userObj}/>} />
+        <Route path="/pools" element={<Pools />} />main
         <Route path="/nft" element={<Nft />} />
       </Routes>
-
     </>
   );
 }
