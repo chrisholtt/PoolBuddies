@@ -20,7 +20,7 @@ const Navbar = ({ userObj, handleUserSignIn, onConnect, disconnectUser }) => {
         <nav className='navbar'>
             <ul>
                 <div>
-                    <li><NavLink to="/" className="navlink" style={{ textDecoration: 'none', display: "flex", alignItems: "center", color: "#f5deb3" }}><img src="/static/buddie-logo.svg" alt="logo" className='logo' /><h1>PoolBuddies</h1></NavLink></li>
+                    <li><NavLink to="/home" className="navlink" style={{ textDecoration: 'none', display: "flex", alignItems: "center", color: "#f5deb3" }}><img src="/static/buddie-logo.svg" alt="logo" className='logo' /><h1>PoolBuddies</h1></NavLink></li>
                     <li><NavLink to="/swap" activeClassName="active" style={{ textDecoration: 'none', color: "#f5deb3" }}><h1>Swap</h1></NavLink></li>
                     <li><NavLink to="/pools" style={{ textDecoration: 'none', color: "#f5deb3" }}><h1>Pools</h1></NavLink></li>
                     <li><NavLink to="/nft" style={{ textDecoration: 'none', color: "#f5deb3" }}><h1>NFT</h1></NavLink></li>
