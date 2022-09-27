@@ -139,18 +139,45 @@ const Swap = ({tokens, user}) => {
 
 const [chartData, setChartData] = useState(null)
 
+//   const fetchChartData = (id) => {
+//     const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=hourly`
+//     fetch(url)
+//       .then(res => res.json())
+//       .then(data => setChartData(data))
+//       const dt = new Date(chartData.prices[1][0])
+//       const dateObject = dt.toLocaleDateString()
+//       console.log("chart-data", dateObject)
+//       console.log(tokenFrom.name.toLowerCase())
+//   }
+
   const fetchChartData = (id) => {
     const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=hourly`
     fetch(url)
       .then(res => res.json())
-      .then(data => setChartData(data))
-      console.log("chart-data", chartData)
-      console.log(tokenFrom.name)
+      .then(data => {
+        const newArray = []
+        for (const object of data.prices){
+            const dt =  new Date(object[0])
+            const dte = (dt.toLocaleDateString())
+            const date = new Date(dte)
+            const newObject = {
+                x: date,
+                y: object[1]
+            }
+            newArray.push(newObject)
+        }
+        const reversedArray = newArray.reverse()
+        setChartData(reversedArray)
+      })
+      console.log(chartData)
   }
 
   useEffect(() => {
+    if(tokenFrom == null){
+        return
+    }else{
       const coinString = tokenFrom.name.toLowerCase()
-      fetchChartData(coinString)
+      fetchChartData(coinString)}
   }, [tokenFrom])
   
 
