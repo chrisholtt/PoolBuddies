@@ -158,10 +158,10 @@ const [chartData, setChartData] = useState(null)
         const newArray = []
         for (const object of data.prices){
             const dt =  new Date(object[0])
-            const dte = (dt.toLocaleDateString())
-            const date = new Date(dte)
+            const dte = (dt.toISOString().split('T')[0])
+            console.log(dte)
             const newObject = {
-                x: date,
+                x: dte,
                 y: object[1]
             }
             newArray.push(newObject)
