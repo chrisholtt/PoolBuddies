@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -84,6 +84,7 @@ const Swap = ({tokens, user}) => {
         setToAmount(priceJSON.buyAmount / (10 ** tokenTo.decimals))
     }
 
+
     async function getQuote(account) {
         if (!tokenFrom || !tokenTo || !user) return
 
@@ -105,6 +106,11 @@ const Swap = ({tokens, user}) => {
 
         return swapQuoteJSON;
     }
+
+    useEffect(() => {
+      getQuote()
+    }, [tokenFrom])
+    
 
     async function trySwap() {
 
@@ -145,13 +151,13 @@ const Swap = ({tokens, user}) => {
     
               <Box className='swap-modal'>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Swap
+                            Token Swap
                         </Typography>
 
                         <Box className='swap-box'>
                             <input type="text" placeholder='0.0' onKeyDown={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
                             <div onClick={handleTokenModalFrom} className='token-dropdown'>
-                                <h2>🔁</h2>
+                                {tokenFrom ? <img className='swapIMG' src={tokenFrom.logoURI}></img> : <h2>🔁</h2>}
                                 <h2>{tokenFrom && tokenFrom.symbol}</h2>
                             </div>
                             {tokens.length && <TokenModal tokenOpen={tokenOpenFrom} handleTokenModal={handleTokenModalFrom} tokens={tokens} handleTokenFromChange={handleTokenFromChange} />}
@@ -166,7 +172,7 @@ const Swap = ({tokens, user}) => {
                         <Box className='swap-box'>
                             <input type="text" placeholder='0.0' value={toAmount} />
                             <div onClick={handleTokenModalTo} className='token-dropdown'>
-                                <h2>🔁</h2>
+                            {tokenTo ? <img className='swapIMG' src={tokenTo.logoURI}></img> : <h2>🔁</h2>}
                                 <h2>{tokenTo && tokenTo.symbol}</h2>
                             </div>
                             {tokens.length && <TokenModal tokenOpen={tokenOpenTo} handleTokenModal={handleTokenModalTo} tokens={tokens} handleTokenFromChange={handleTokenToChange} />}

@@ -65,7 +65,7 @@ function TokenModal({ tokenOpen, handleTokenModal, tokens, handleTokenFromChange
     const searchResults = searchResult.map((token, index) => {
         return (
             <div className='token' key={index} onClick={() => handleTokenChange(token.address)}>
-                <img src={token.logoURI} alt="" />
+                <img className='tokenIMG' src={token.logoURI} alt="" />
                 <h3>{token.name}</h3>
                 <h3>{token.symbol}</h3>
             </div>
@@ -76,7 +76,7 @@ function TokenModal({ tokenOpen, handleTokenModal, tokens, handleTokenFromChange
 
 
     return (
-        <div>
+        <div className='token-nodes'>
             <Modal
                 open={tokenOpen}
                 onClose={handleClose}
@@ -85,7 +85,7 @@ function TokenModal({ tokenOpen, handleTokenModal, tokens, handleTokenFromChange
             >
                 <Box sx={style}>
                     <button onClick={handleClose}>close</button>
-                    <input type="text" placeholder='search ticker' value={tokenSearch} onChange={handleTokenSearch} />
+                    <input autoFocus="true" type="text" placeholder='search ticker' value={tokenSearch} onChange={handleTokenSearch} />
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Select a token
                     </Typography>

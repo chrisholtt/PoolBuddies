@@ -95,7 +95,7 @@ color: #f5deb3;
   margin: auto;
   left: 0;
   right: 0;
-  width: 500px;
+  width: 400px;
   height: 500px;
   padding: 10px;
   background: rgba(88, 198, 241, 0.01);
@@ -128,9 +128,10 @@ color: #f5deb3;
 .token{
   border-radius: 16px;
   display: flex;
-  width: 80%;
+  width: 1200px;
   padding: 5px;
   margin: 5px;
+  height: 30px;
 }
 
 .token:hover {
@@ -143,9 +144,17 @@ color: #f5deb3;
   border-radius: 16px;
   /* background: red; */
   box-shadow: 4px 4px 10px #24242454;
+  margin-left: 90px;
 }
 
 .token-nodes{
   height: 80%;
   overflow: scroll;
+  background-color: #5f0a69;
 }
+
+.swapIMG{
+  height: 20px;
+  width: 20px;
+}
+
