@@ -28,7 +28,7 @@ const Pools = ({ lotteryContract5, userObj, web3 }) => {
 
     useEffect(() => {
         getContract5Info()
-    }, [])
+    }, [userObj])
 
 
     return (

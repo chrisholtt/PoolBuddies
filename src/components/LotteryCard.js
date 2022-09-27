@@ -27,6 +27,14 @@ const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther,
         });
     }
 
+    const PickWinnerButton = async () => {
+        const contractOwnerAddress = await contract.methods.getOwnersAddress().call();
+        console.log(contractOwnerAddress);
+        return (
+            <button>hey</button>
+        )
+    }
+
 
     return (
         <div className="lotto-card">
@@ -43,6 +51,7 @@ const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther,
             <h2>payout: {(priceInEther * maxPlayers).toFixed(2)}</h2>
 
             <button onClick={pickWinner}>pick winner</button>
+            {/* <PickWinnerButton /> */}
 
 
         </div>
