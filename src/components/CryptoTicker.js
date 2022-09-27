@@ -35,7 +35,7 @@ const CryptoTicker = () => {
     return (
                 
         
-            <Marquee gradientColor={[245, 240, 218]} pauseOnHover={true} className="ticker">
+            <Marquee gradientColor={[150, 120, 200]} pauseOnHover={true} speed={6} className="ticker">
                 {tickerNodes}
             </Marquee>
     
