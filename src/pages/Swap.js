@@ -162,7 +162,7 @@ const [chartData, setChartData] = useState(null)
   useEffect(() => {
     if(tokenFrom == null){
         return
-    }else{
+    } else{
       const coinString = tokenFrom.name.toLowerCase()
       fetchChartData(coinString)}
   }, [tokenFrom])
