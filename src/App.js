@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
 import Web3 from 'web3'
 
 import createContract5 from './contracts/lotteryContract5'
-=======
 import Home from './pages/Home';
 
 
@@ -103,12 +102,12 @@ function App() {
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
       <Routes>
-     
+
         <Route path="/swap" element={<Swap tokens={tokens} user={userObj} />} />
         <Route path="/pools" element={<Pools lotteryContract5={lotteryContract5} userObj={userObj} web3={web3} />} />
 
-        <Route path="/" element={<Home />}/>
-        <Route path="/swap" element={<Swap tokens={tokens} user={userObj}/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/swap" element={<Swap tokens={tokens} user={userObj} />} />
         <Route path="/pools" element={<Pools />} />main
         <Route path="/nft" element={<Nft />} />
       </Routes>
