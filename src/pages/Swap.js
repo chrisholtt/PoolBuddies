@@ -8,6 +8,7 @@ import TokenModal from '../components/TokenModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowsUpDown } from '@fortawesome/free-solid-svg-icons';
 import CoinChart from '../components/CoinChart';
+import styled from 'styled-components'
 
 const Swap = ({tokens, user}) => {
     
@@ -139,17 +140,6 @@ const Swap = ({tokens, user}) => {
 
 const [chartData, setChartData] = useState(null)
 
-//   const fetchChartData = (id) => {
-//     const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=hourly`
-//     fetch(url)
-//       .then(res => res.json())
-//       .then(data => setChartData(data))
-//       const dt = new Date(chartData.prices[1][0])
-//       const dateObject = dt.toLocaleDateString()
-//       console.log("chart-data", dateObject)
-//       console.log(tokenFrom.name.toLowerCase())
-//   }
-
   const fetchChartData = (id) => {
     const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=hourly`
     fetch(url)
@@ -179,8 +169,11 @@ const [chartData, setChartData] = useState(null)
   
 
     return (
-        <div className='swap-modal-wrapper'>
+        <>
+        {tokenFrom ?
               <CoinChart chartData={chartData} tokenFrom={tokenFrom}/>
+              : <div>"Null" </div>}
+        <div className='swap-modal-wrapper'>
               <Box className='swap-modal'>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
                             Token Swap
@@ -213,8 +206,9 @@ const [chartData, setChartData] = useState(null)
                         <button disabled={!user} onClick={trySwap}>SWAP</button>
                     </Box>
         </div>
-
+        </>
     )
 }
+
 
 export default Swap
