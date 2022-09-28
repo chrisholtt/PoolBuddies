@@ -8,10 +8,10 @@ import { useEffect, useState } from 'react';
 import Web3 from 'web3'
 import Home from './pages/Home';
 import CryptoTicker from './components/CryptoTicker';
-import CryptoTickerItem from './components/CryptoTickerItem';
 
 
 function App() {
+
 
   const [tokens, setTokens] = useState([]);
 
