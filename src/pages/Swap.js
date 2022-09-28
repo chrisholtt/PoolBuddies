@@ -141,7 +141,7 @@ const Swap = ({tokens, user}) => {
 const [chartData, setChartData] = useState(null)
 
   const fetchChartData = (id) => {
-    const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=hourly`
+    const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=monthly`
     fetch(url)
       .then(res => res.json())
       .then(data => {
