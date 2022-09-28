@@ -7,18 +7,11 @@ import file from '../utils/portal';
 import TokenModal from '../components/TokenModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowsUpDown } from '@fortawesome/free-solid-svg-icons';
+import CoinChart from '../components/CoinChart';
+import styled from 'styled-components'
 
 const Swap = ({tokens, user}) => {
     
-
-
-    // useEffect(() => {
-    //     fetch(`https://api.coingecko.com/api/v3/coins/${tokenFrom}/market_chart/range?vs_currency=usd&from=1663589528&to=1664197935`)
-    //     .then(res => res.json())
-    //     .then(data => setTokens(data.tokens))
-    //   })
-    
-
     const qs = require('qs');
     const Web3 = require('web3');
     const BigNumber = require('bignumber.js');
@@ -70,7 +63,7 @@ const Swap = ({tokens, user}) => {
         if (!tokenFrom || !tokenTo) return
         let amount = fromAmount * 10 ** tokenFrom.decimals
         // console.log(amount)
-        console.log("token from", tokenFrom)
+        // console.log("token from", tokenFrom.name.toLowerCase())
 
         const params = {
             sellToken: tokenFrom.address,
@@ -116,12 +109,12 @@ const Swap = ({tokens, user}) => {
 
         // Pulls in any address / most recent used account.
         let accounts = await window.ethereum.request({ method: "eth_accounts" });
-        console.log("window.eth", accounts[0]);
-        console.log("user", user)
+        // console.log("window.eth", accounts[0]);
+        // console.log("user", user)
 
         let takerAddress = accounts[0];
         const swapQuoteJSON = await getQuote(takerAddress);
-        console.log(swapQuoteJSON)
+        // console.log(swapQuoteJSON)
 
         // Set token allowance 
         const web3 = new Web3(Web3.givenProvider);
@@ -140,22 +133,54 @@ const Swap = ({tokens, user}) => {
         .then(tx => console.log("tx: ", tx))
 
     const receipt = await web3.eth.sendTransaction(swapQuoteJSON);
-    console.log("receipt: ", receipt);
+    // console.log("receipt: ", receipt);
 
     
 }
 
+const [chartData, setChartData] = useState(null)
+
+  const fetchChartData = (id) => {
+    const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=monthly`
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        const newArray = []
+        for (const object of data.prices){
+            const newObject = {
+                x: object[0],
+                y: object[1]
+            }
+            newArray.push(newObject)
+        }
+        const reversedArray = newArray.reverse()
+        setChartData(reversedArray)
+      })
+      console.log(chartData)
+  }
+
+  useEffect(() => {
+    if(tokenFrom == null){
+        return
+    }else{
+      const coinString = tokenFrom.name.toLowerCase()
+      fetchChartData(coinString)}
+  }, [tokenFrom])
+  
 
     return (
+        <>
+        {tokenFrom ?
+              <CoinChart chartData={chartData} tokenFrom={tokenFrom}/>
+              : <div>"Null" </div>}
         <div className='swap-modal-wrapper'>
-    
               <Box className='swap-modal'>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
                             Token Swap
                         </Typography>
 
                         <Box className='swap-box'>
-                            <input type="text" placeholder='0.0' onKeyDown={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
+                            <input className='token-input' type="text" placeholder='0.0' onKeyDown={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
                             <div onClick={handleTokenModalFrom} className='token-dropdown'>
                                 {tokenFrom ? <img className='swapIMG' src={tokenFrom.logoURI}></img> : <h2>🔁</h2>}
                                 <h2>{tokenFrom && tokenFrom.symbol}</h2>
@@ -163,14 +188,14 @@ const Swap = ({tokens, user}) => {
                             {tokens.length && <TokenModal tokenOpen={tokenOpenFrom} handleTokenModal={handleTokenModalFrom} tokens={tokens} handleTokenFromChange={handleTokenFromChange} />}
                         </Box>
                         {!isHovering &&
-                        <button onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown}/></button>
+                        <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown}/></div>
                     }{isHovering &&
-                        <button onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowsUpDown} /></button>
+                        <button className='token-button' onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowsUpDown} /></button>
                      }
                         
 
                         <Box className='swap-box'>
-                            <input type="text" placeholder='0.0' value={toAmount} />
+                            <input className='token-input' type="text" placeholder='0.0' value={toAmount} />
                             <div onClick={handleTokenModalTo} className='token-dropdown'>
                             {tokenTo ? <img className='swapIMG' src={tokenTo.logoURI}></img> : <h2>🔁</h2>}
                                 <h2>{tokenTo && tokenTo.symbol}</h2>
@@ -181,8 +206,9 @@ const Swap = ({tokens, user}) => {
                         <button disabled={!user} onClick={trySwap}>SWAP</button>
                     </Box>
         </div>
-
+        </>
     )
 }
+
 
 export default Swap
