@@ -21,7 +21,7 @@ function App() {
       .then(res => res.json())
       .then(data => {
         const spliced = data.tokens.splice(0, 200)
-        setTokens(data.tokens)})
+        setTokens(spliced)})
   })
 
   const [userObj, setUserObj] = useState({
