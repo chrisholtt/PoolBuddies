@@ -4,15 +4,55 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
+/* 
+Google fonts:
+font-family: 'Roboto Mono', monospace; bold 700 and 400 for h1's
+font-family: 'Noto Sans Mono', monospace; 
+font-family: 'Fredoka One', cursive;
+*/
+
+h1 {
+  font-family:'Roboto Mono', monospace;
+  /* font-family: 'Noto Sans Mono', monospace; */
+}
+
+h2, h3{
+  /* font-family:'Roboto Mono', monospace; */
+  font-family: 'Noto Sans Mono', monospace;
+}
+
+p{
+  font-family: 'Noto Sans Mono', monospace;
+}
+
+section {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 
 
+container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  padding: 0 10vw;
+}
 
-
+.vh60{
+  height: 60vh;
+}
 
 
 body {
-  background: rgb(48,61,91);
-background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
+  background: rgb(222, 232, 255);
+  width: 100vw;
+  overflow-x: hidden;
+/* background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%); */
 }
 
 .navbar{
@@ -26,7 +66,7 @@ background: rgba(255, 255, 255, 0.01);
 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 backdrop-filter: blur(10px);
 -webkit-backdrop-filter: blur(10px);
-color: #f5deb3;
+color: black;
 }
 
 .navbar ul {
@@ -51,6 +91,15 @@ color: #f5deb3;
 .active {
   color: #F0A9F8;
 }
+
+
+
+.pools-container{
+  display: flex;
+  overflow: scroll;
+}
+
+
 
 
 .connect-btn {
@@ -104,7 +153,7 @@ color: #f5deb3;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #f5deb3;
+  color: black;
 }
 
 .swap-box {
@@ -167,6 +216,7 @@ color: #f5deb3;
   border-radius: 2rem;
 }
 
+
 #modal-modal-title{
   color: #f5deb3;
 }
@@ -185,4 +235,43 @@ color: #f5deb3;
 
 .token-input{
   color: #f5deb3
+=======
+.lotto-card{
+  width: 200px;
+  height: 230px;
+  background: white;
+}
+
+.pool-balance{
+  display: flex;
+}
+
+.pool-spline{
+  width: 60vw;
+  height: 60vh;
+  position: absolute;
+  z-index: -100;
+}
+
+.lotto-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-width: 300px;
+  min-height: 240px;
+  padding: 0 10px ;
+  margin: 10px;
+}
+
+.forsted-bg{
+  /* From https://css.glass */
+  width: 100vw;
+  height:40vh;
+background: rgba(255, 255, 255, 0.01);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+transform: rotate(10deg);
 }

@@ -20,10 +20,10 @@ const Navbar = ({ userObj, handleUserSignIn, onConnect, disconnectUser }) => {
         <nav className='navbar'>
             <ul>
                 <div>
-                    <li><NavLink to="/home" className="navlink" style={{ textDecoration: 'none', display: "flex", alignItems: "center", color: "#f5deb3" }}><img src="/static/buddie-logo.svg" alt="logo" className='logo' /><h1>PoolBuddies</h1></NavLink></li>
-                    <li><NavLink to="/swap" activeClassName="active" style={{ textDecoration: 'none', color: "#f5deb3" }}><h1>Swap</h1></NavLink></li>
-                    <li><NavLink to="/pools" style={{ textDecoration: 'none', color: "#f5deb3" }}><h1>Pools</h1></NavLink></li>
-                    <li><NavLink to="/nft" style={{ textDecoration: 'none', color: "#f5deb3" }}><h1>NFT</h1></NavLink></li>
+                    <li><NavLink to="/" className="navlink" style={{ textDecoration: 'none', display: "flex", alignItems: "center", color: "#000000" }}><img src="/static/buddie-logo.svg" alt="logo" className='logo' /><h1>PoolBuddies</h1></NavLink></li>
+                    <li><NavLink to="/swap" activeClassName="active" style={{ textDecoration: 'none', color: "#000000" }}><h1>Swap</h1></NavLink></li>
+                    <li><NavLink to="/pools" style={{ textDecoration: 'none', color: "#000000" }}><h1>Pools</h1></NavLink></li>
+                    <li><NavLink to="/nft" style={{ textDecoration: 'none', color: "#000000" }}><h1>NFT</h1></NavLink></li>
                 </div>
             </ul>
 
@@ -36,7 +36,7 @@ const Navbar = ({ userObj, handleUserSignIn, onConnect, disconnectUser }) => {
                         <div>
 
                             <div>
-                                <img src="/static/polygon-symbol.svg" alt="" className='polygon-symbol' />
+                                <img src="/static/polygon-symbol-black.svg" alt="" className='polygon-symbol' />
                                 <h2>{userObj.balance}</h2>
                             </div>
                             <li>
