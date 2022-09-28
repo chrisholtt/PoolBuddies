@@ -213,11 +213,11 @@ const abi = [
     }
 ]
 
-const address = "0x40C69DD68408a3A67b274a22cb89A216444F995B";
+const address = "0xA99d6F1d26888e6a4b374750c4fD183beA4b6290";
 
-const createContract5 = web3 => {
+const createContract30 = web3 => {
     return new web3.eth.Contract(abi, address);
 }
 
 
-export default createContract5;
+export default createContract30;
