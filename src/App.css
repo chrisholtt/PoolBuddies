@@ -92,15 +92,10 @@ color: black;
   color: #F0A9F8;
 }
 
-
-
 .pools-container{
   display: flex;
   overflow: scroll;
 }
-
-
-
 
 .connect-btn {
   display: flex;
@@ -128,10 +123,9 @@ color: black;
 
 .swap-modal-wrapper {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 70%
 }
-
 
 .swap-modal{
   position: absolute;
@@ -200,9 +194,8 @@ color: black;
 .token-nodes{
   height: 80%;
   overflow: scroll;
-  background: rgb(48,61,91);
-  background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
-  color: #f5deb3;
+  background: rgb(222, 232, 255);
+  color: black;
 }
 
 .swapIMG{
@@ -211,20 +204,19 @@ color: black;
 }
 
 .MuiBox-root.css-kbsmes{
-  background: rgb(48,61,91);
-  background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
+  background:rgb(222, 232, 255);
   border-radius: 2rem;
 }
 
 
 #modal-modal-title{
-  color: #f5deb3;
+  color: black;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .token-button{
-  background: rgb(48,61,91);
-  background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%);
-  color: #f5deb3;
+  background: rgb(222, 232, 255);
+  color: black;
   width: 30px;
   height: 30px;
   border-radius: 1rem;
@@ -234,7 +226,7 @@ color: black;
 }
 
 .token-input{
-  color: #f5deb3
+  color: black;
 }
 .lotto-card{
   width: 200px;

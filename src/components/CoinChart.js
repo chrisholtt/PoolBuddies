@@ -9,7 +9,8 @@ const CoinChart = ({chartData, tokenFrom}) => {
         title: {
             text: 'Coin Value over Time',
             style: {
-                color: '#345267'
+                color: '#345267',
+                fontFamily: 'Roboto Mono'
             }
             },
         chart: {
@@ -56,7 +57,7 @@ const Wrapper = styled.div`
     box-shadow: 0 0 16px grey;
     background-color: #f5f0da;
     right: 38%;
-    top: 16.3%;
+    top: 22%;
     border-radius: 2rem;
 `
 
