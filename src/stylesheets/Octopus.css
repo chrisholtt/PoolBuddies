@@ -1,5 +1,8 @@
 .octopus {
-    height: 750px;;
+    position: relative;
+    bottom: 80px;
+    right: 400px;
+    height: 750px;
     width: 100%; 
     object-fit: scale-down;
     overflow: hidden;
