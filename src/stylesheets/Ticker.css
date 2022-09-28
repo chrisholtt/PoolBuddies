@@ -1,0 +1,20 @@
+
+.item {
+    color: wheat;
+    padding-left: 20px;
+    padding-right: 20px;  
+    text-align: center;
+    /* border: 2px solid wheat; */
+}
+
+
+.green {
+    color: green;
+
+
+}
+
+.red {
+    color: red;
+
+}

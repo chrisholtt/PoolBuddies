@@ -8,19 +8,13 @@ import { useEffect, useState } from 'react';
 import Web3 from 'web3'
 import createContract5 from './contracts/lotteryContract5'
 import Home from './pages/Home';
-
-
-function App() {
-
-  const [tokens, setTokens] = useState([]);
-
+import CryptoTicker from './components/CryptoTicker';
 
 function App() {
 
   const [tokens, setTokens] = useState([]);
   const [web3, setWeb3] = useState();
   const [lotteryContract5, setLotteryContract5] = useState();
-
 
   useEffect(() => {
     fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org')
@@ -105,6 +99,7 @@ function App() {
   return (
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
+      <CryptoTicker/>
       <Routes>
 
         <Route path="/swap" element={<Swap tokens={tokens} user={userObj} />} />
