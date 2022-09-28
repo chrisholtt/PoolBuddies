@@ -10,12 +10,17 @@ import createContract5 from './contracts/lotteryContract5'
 import Home from './pages/Home';
 
 
+function App() {
+
+  const [tokens, setTokens] = useState([]);
+
 
 function App() {
 
   const [tokens, setTokens] = useState([]);
   const [web3, setWeb3] = useState();
   const [lotteryContract5, setLotteryContract5] = useState();
+
 
   useEffect(() => {
     fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org')
