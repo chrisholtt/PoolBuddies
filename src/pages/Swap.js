@@ -142,11 +142,10 @@ const Swap = ({tokens, user}) => {
 
 const [chartData, setChartData] = useState(null)
 
-  const fetchChartData = (id) => {
-    const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=90`
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
+const getChartData = async (id) => {
+    return await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=500`)
+    .then(res => res.json())
+    .then(data => {
         const newArray = []
         for (const object of data.prices){
             const newObject = {
@@ -157,21 +156,58 @@ const [chartData, setChartData] = useState(null)
         }
         const reversedArray = newArray.reverse()
         setChartData(reversedArray)
+        console.log(reversedArray)
       })
-      console.log(chartData)
-  }
+}    
+
+// const unpackStocks = async function(symbol, timePoint) {
+//     const stocks = await getStocks(symbol, timePoint);
+
+//     const stockEntries = Object.entries(stocks)
+   
+//     const stockObjects = stockEntries.map((entry)=>{
+//         return {
+//             date: entry[0],
+//             info: entry[1]
+//         }
+
+//     })
+
+//     return stockObjects.slice(0, 365)
+// }
+//   const fetchChartData = (id) => {
+//     const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=500`
+//     fetch(url)
+//       .then(res => res.json())
+//       .then(data => {
+//         const newArray = []
+//         for (const object of data.prices){
+//             const newObject = {
+//                 x: object[0],
+//                 y: object[1]
+//             }
+//             newArray.push(newObject)
+//         }
+//         const reversedArray = newArray.reverse()
+//         setChartData(reversedArray)
+//       })
+//     //   console.log(chartData)
+//   }
 
   useEffect(() => {
     if(tokenFrom == null){
         return
     }else{
       const coinString = tokenFrom.name.toLowerCase()
-      fetchChartData(coinString)}
+      getChartData(coinString)}
   }, [tokenFrom])
+
+ 
   
     return (
         <>
-              <CoinChart chartData={chartData} tokenFrom={tokenFrom}/>
+            
+              { chartData? <CoinChart chartData={chartData} tokenFrom={tokenFrom}/> : null }
         <div className='swap-modal-wrapper'>
               <Box className='swap-modal'>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
