@@ -19,7 +19,9 @@ function App() {
   useEffect(() => {
     fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org')
       .then(res => res.json())
-      .then(data => setTokens(data.tokens))
+      .then(data => {
+        const spliced = data.tokens.splice(0, 200)
+        setTokens(data.tokens)})
   })
 
   const [userObj, setUserObj] = useState({

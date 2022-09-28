@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 import file from '../utils/portal';
 import TokenModal from '../components/TokenModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowsUpDown } from '@fortawesome/free-solid-svg-icons';
 import CoinChart from '../components/CoinChart';
-import styled from 'styled-components'
 
 const Swap = ({tokens, user}) => {
     
@@ -47,9 +44,14 @@ const Swap = ({tokens, user}) => {
     const handleTokenModalFrom = () => {
         setTokenOpenFrom(prev => !prev);
     }
+    const wanincher = {
+        name: '1inch',
+        symbol: '1INCH',
+        logoURI: 'https://assets.coingecko.com/coins/images/13469/thumb/1inch-token.png?1608803028'
+    }
 
     // Token TO and FROM
-    const [tokenFrom, setTokenFrom] = useState(null);
+    const [tokenFrom, setTokenFrom] = useState(wanincher);
     const [tokenTo, setTokenTo] = useState(null);
 
     const handleTokenFromChange = (tokenObj) => {
@@ -167,12 +169,9 @@ const [chartData, setChartData] = useState(null)
       fetchChartData(coinString)}
   }, [tokenFrom])
   
-
     return (
         <>
-        {tokenFrom ?
               <CoinChart chartData={chartData} tokenFrom={tokenFrom}/>
-              : <div>"Null" </div>}
         <div className='swap-modal-wrapper'>
               <Box className='swap-modal'>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
