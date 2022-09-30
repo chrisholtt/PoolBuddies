@@ -102,7 +102,7 @@ const Swap = ({ tokens, user }) => {
 
         setToAmount(swapQuoteJSON.buyAmount / (10 ** tokenTo.decimals))
         return swapQuoteJSON;
-        
+
     }
 
     useEffect(() => {
@@ -174,33 +174,34 @@ const Swap = ({ tokens, user }) => {
     }, [tokenFrom])
 
 
-const getChartData = async (id) => {
-    return await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=monthly`)
-    .then(res => res.json())
-    .then(data => {
-        const newArray = []
-        for (const object of data.prices){
-            const newObject = {
-                x: object[0],
-                y: object[1]
-            }
-            newArray.push(newObject)
+    const getChartData = async (id) => {
+        return await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=monthly`)
+            .then(res => res.json())
+            .then(data => {
+                const newArray = []
+                for (const object of data.prices) {
+                    const newObject = {
+                        x: object[0],
+                        y: object[1]
+                    }
+                    newArray.push(newObject)
+                }
+                const reversedArray = newArray.reverse()
+                setChartData(reversedArray)
+            })
+    }
+
+    useEffect(() => {
+        if (tokenFrom == null) {
+            return
+        } else {
+            const coinString = tokenFrom.name.toLowerCase()
+            getChartData(coinString)
         }
-        const reversedArray = newArray.reverse()
-        setChartData(reversedArray)
-      })
-}    
+    }, [tokenFrom])
 
-  useEffect(() => {
-    if(tokenFrom == null){
-        return
-    }else{
-      const coinString = tokenFrom.name.toLowerCase()
-      getChartData(coinString)}
-  }, [tokenFrom])
 
- 
-  
+
     return (
         <>
             {tokenFrom ?
@@ -222,9 +223,7 @@ const getChartData = async (id) => {
                     </Box>
                     {!isHovering &&
                         <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown} /></div>
-
-
-
+                    }
 
                     <Box className='swap-box'>
                         <input className='token-input' type="text" placeholder='0.0' value={toAmount} />
