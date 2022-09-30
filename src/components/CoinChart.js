@@ -10,7 +10,7 @@ const CoinChart = ({chartData, tokenFrom}) => {
             enabled:false
         },
         title: {
-            text: 'Coin Value over Time',
+            text: `${tokenFrom} Value last 24HRs`,
             style: {
                 color: '#345267',
                 fontFamily: 'Roboto Mono'
