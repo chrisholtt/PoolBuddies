@@ -100,7 +100,6 @@ const Swap = ({tokens, user}) => {
         const swapQuoteJSON = await response.json();
 
         setToAmount(swapQuoteJSON.buyAmount / (10 ** tokenTo.decimals))
-        console.log("fuck you", swapQuoteJSON)
         return swapQuoteJSON;
         
     }
