@@ -29,8 +29,6 @@ function TokenModal({ tokenOpen, handleTokenModal, tokens, handleTokenFromChange
     const handleTokenChange = (tokenAdd) => {
         const tokenFromSearch = tokens.filter(token => token.address === tokenAdd)
         handleTokenFromChange(tokenFromSearch[0])
-        // console.log(tokens);
-        // console.log(tokenFromSearch[0]);
         handleTokenModal();
     }
 
