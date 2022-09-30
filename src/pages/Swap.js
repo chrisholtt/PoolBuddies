@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 import file from '../utils/portal';
 import TokenModal from '../components/TokenModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -47,9 +45,16 @@ const Swap = ({ tokens, user }) => {
     const handleTokenModalFrom = () => {
         setTokenOpenFrom(prev => !prev);
     }
+    const wanincher = {
+        address: '0x111111111117dC0aa78b770fA6A738034120C302',
+        name: '1inch',
+        symbol: '1INCH',
+        logoURI: 'https://assets.coingecko.com/coins/images/13469/thumb/1inch-token.png?1608803028',
+        decimals: 18
+    }
 
     // Token TO and FROM
-    const [tokenFrom, setTokenFrom] = useState(null);
+    const [tokenFrom, setTokenFrom] = useState(wanincher);
     const [tokenTo, setTokenTo] = useState(null);
 
     const handleTokenFromChange = (tokenObj) => {
@@ -96,8 +101,8 @@ const Swap = ({ tokens, user }) => {
         const swapQuoteJSON = await response.json();
 
         setToAmount(swapQuoteJSON.buyAmount / (10 ** tokenTo.decimals))
-
         return swapQuoteJSON;
+        
     }
 
     useEffect(() => {
@@ -169,6 +174,33 @@ const Swap = ({ tokens, user }) => {
     }, [tokenFrom])
 
 
+const getChartData = async (id) => {
+    return await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=monthly`)
+    .then(res => res.json())
+    .then(data => {
+        const newArray = []
+        for (const object of data.prices){
+            const newObject = {
+                x: object[0],
+                y: object[1]
+            }
+            newArray.push(newObject)
+        }
+        const reversedArray = newArray.reverse()
+        setChartData(reversedArray)
+      })
+}    
+
+  useEffect(() => {
+    if(tokenFrom == null){
+        return
+    }else{
+      const coinString = tokenFrom.name.toLowerCase()
+      getChartData(coinString)}
+  }, [tokenFrom])
+
+ 
+  
     return (
         <>
             {tokenFrom ?
@@ -190,9 +222,8 @@ const Swap = ({ tokens, user }) => {
                     </Box>
                     {!isHovering &&
                         <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown} /></div>
-                    }{isHovering &&
-                        <button className='token-button' onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowsUpDown} /></button>
-                    }
+
+
 
 
                     <Box className='swap-box'>
