@@ -20,7 +20,8 @@ const CoinChart = ({chartData, tokenFrom}) => {
             spacing: [20, 50, 30, 50],
             height: 500,
             width: 800,
-            backgroundColor: 'white',
+            borderRadius: 40,
+            backgroundColor: '#FAF3DD',
         },
         scrollbar: {
             enabled: false
