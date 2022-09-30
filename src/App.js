@@ -98,7 +98,7 @@ function App() {
   return (
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
-      <CryptoTicker/>
+      <CryptoTicker />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/swap" element={<Swap tokens={tokens} user={userObj} />} />

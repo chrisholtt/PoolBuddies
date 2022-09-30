@@ -49,7 +49,7 @@ container {
 
 
 body {
-  background: rgb(222, 232, 255);
+  background: rgb(244, 237, 255);
   width: 100vw;
   overflow-x: hidden;
 /* background: linear-gradient(129deg, rgba(48,61,91,1) 0%, rgba(60,43,83,1) 100%); */
@@ -236,14 +236,11 @@ color: black;
 .token-input{
   color: #f5deb3
 }
-.lotto-card{
-  width: 200px;
-  height: 230px;
-  background: white;
-}
+
 
 .pool-balance{
   display: flex;
+  justify-content: center;
 }
 
 .pool-spline{
@@ -253,13 +250,21 @@ color: black;
   z-index: -100;
 }
 
+
+.card-bg{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
 .lotto-card {
   display: flex;
   flex-direction: column;
+  position: relative;
   align-items: center;
   justify-content: space-evenly;
-  min-width: 300px;
-  min-height: 240px;
+  min-width: 240px;
+  min-height: 260px;
   padding: 0 10px ;
   margin: 10px;
 }
@@ -274,4 +279,14 @@ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(8px);
 -webkit-backdrop-filter: blur(8px);
 transform: rotate(10deg);
+}
+
+
+.life-buoy {
+  /* width: 130px; */
+  /* height: 100px; */
+  position: absolute;
+  width: 80%;
+  margin-right: 6px;
+  opacity: 0.3;
 }

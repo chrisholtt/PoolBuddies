@@ -23,7 +23,8 @@ const Pools = ({ userObj, web3 }) => {
         poolFull: false,
         address: "0xa43485521AbC7BCFA48556332A8cb4aaB000b4Bd",
         adresses: [],
-        usersTickets: 0
+        usersTickets: 0,
+        ownerAddress: ''
     });
 
     const [lotteryContract10Details, setLotteryContract10Players] = useState({
@@ -32,7 +33,8 @@ const Pools = ({ userObj, web3 }) => {
         poolFull: false,
         address: "0x4fd2ca3845f1b8032d6a2B941B7475130f30434c",
         adresses: [],
-        usersTickets: 0
+        usersTickets: 0,
+        ownerAddress: ''
     });
 
     const [lotteryContract30Details, setLotteryContract30Players] = useState({
@@ -41,7 +43,8 @@ const Pools = ({ userObj, web3 }) => {
         poolFull: false,
         address: "0xA99d6F1d26888e6a4b374750c4fD183beA4b6290",
         adresses: [],
-        usersTickets: 0
+        usersTickets: 0,
+        ownerAddress: ''
     });
 
     // On page load fetch this (needs fixing)
@@ -63,6 +66,7 @@ const Pools = ({ userObj, web3 }) => {
         const poolFull = await lotteryContract5.methods.isPoolFull().call();
         const listOfAddressesInContract = await lotteryContract5.methods.getPlayers().call();
         const usersTicketCount = await lotteryContract5.methods.getUsersTickets(userObj.address).call();
+        const ownersAddress = await lotteryContract5.methods.getOwnersAddress().call();
         // Set how many people in contract
         setLotteryContract5Players((prev) => {
             return { ...prev, players: players5 }
@@ -83,6 +87,11 @@ const Pools = ({ userObj, web3 }) => {
         setLotteryContract5Players((prev) => {
             return { ...prev, usersTickets: usersTicketCount }
         })
+        // Setting the contract owners address
+        setLotteryContract5Players((prev) => {
+            return { ...prev, ownerAddress: ownersAddress }
+        })
+
     }
 
     const getContract10Info = async () => {
@@ -91,6 +100,7 @@ const Pools = ({ userObj, web3 }) => {
         const poolFull = await lotteryContract10.methods.isPoolFull().call();
         const listOfAddressesInContract = await lotteryContract10.methods.getPlayers().call();
         const usersTicketCount = await lotteryContract10.methods.getUsersTickets(userObj.address).call();
+        const ownersAddress = await lotteryContract10.methods.getOwnersAddress().call();
         // Set how many people in contract
         setLotteryContract10Players((prev) => {
             return { ...prev, players: players5 }
@@ -110,6 +120,10 @@ const Pools = ({ userObj, web3 }) => {
         // Set the users ticket count
         setLotteryContract10Players((prev) => {
             return { ...prev, usersTickets: usersTicketCount }
+        })
+        // Setting the contract owners address
+        setLotteryContract10Players((prev) => {
+            return { ...prev, ownerAddress: ownersAddress }
         })
     }
 
@@ -119,6 +133,7 @@ const Pools = ({ userObj, web3 }) => {
         const poolFull = await lotteryContract30.methods.isPoolFull().call();
         const listOfAddressesInContract = await lotteryContract30.methods.getPlayers().call();
         const usersTicketCount = await lotteryContract30.methods.getUsersTickets(userObj.address).call();
+        const ownersAddress = await lotteryContract10.methods.getOwnersAddress().call();
         // Set how many people in contract
         setLotteryContract30Players((prev) => {
             return { ...prev, players: players30 }
@@ -138,6 +153,10 @@ const Pools = ({ userObj, web3 }) => {
         // Set the users ticket count
         setLotteryContract30Players((prev) => {
             return { ...prev, usersTickets: usersTicketCount }
+        })
+        // Setting the contract owners address
+        setLotteryContract30Players((prev) => {
+            return { ...prev, ownerAddress: ownersAddress }
         })
     }
 
@@ -170,7 +189,7 @@ const Pools = ({ userObj, web3 }) => {
 
             <section>
                 <container>
-                    <h1>Open pools</h1>
+                    <h1>Open Pools</h1>
                     <div style={{ width: '50vw' }}>
                         <hr />
                     </div>
@@ -181,9 +200,9 @@ const Pools = ({ userObj, web3 }) => {
                         <h1>Dip and win</h1>
                     </div>
                     <div className='pools-container'>
-                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={1.01} web3={web3} />
-                        <LotteryCard contract={lotteryContract10} cardDetails={lotteryContract10Details} maxPlayers={10} userObj={userObj} priceInEther={1.01} web3={web3} />
-                        <LotteryCard contract={lotteryContract30} cardDetails={lotteryContract30Details} maxPlayers={30} userObj={userObj} priceInEther={1.01} web3={web3} />
+                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={1.005} web3={web3} maticPriceInUsd={maticPriceInUsd} />
+                        <LotteryCard contract={lotteryContract10} cardDetails={lotteryContract10Details} maxPlayers={10} userObj={userObj} priceInEther={1.005} web3={web3} maticPriceInUsd={maticPriceInUsd} />
+                        <LotteryCard contract={lotteryContract30} cardDetails={lotteryContract30Details} maxPlayers={30} userObj={userObj} priceInEther={1.005} web3={web3} maticPriceInUsd={maticPriceInUsd} />
                     </div>
                 </container>
 
@@ -192,9 +211,9 @@ const Pools = ({ userObj, web3 }) => {
                         <h1>Dip and win</h1>
                     </div>
                     <div className='pools-container'>
-                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={0.011} web3={web3} />
-                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={0.011} web3={web3} />
-                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={0.011} web3={web3} />
+                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={0.011} web3={web3} maticPriceInUsd={maticPriceInUsd} />
+                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={0.011} web3={web3} maticPriceInUsd={maticPriceInUsd} />
+                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={0.011} web3={web3} maticPriceInUsd={maticPriceInUsd} />
                     </div>
                 </container>
 
