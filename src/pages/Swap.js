@@ -49,7 +49,7 @@ const Swap = ({tokens, user}) => {
         name: '1inch',
         symbol: '1INCH',
         logoURI: 'https://assets.coingecko.com/coins/images/13469/thumb/1inch-token.png?1608803028',
-        decimals: 18,
+        decimals: 18
     }
 
     // Token TO and FROM
@@ -162,25 +162,6 @@ const getChartData = async (id) => {
       })
 }    
 
-//   const fetchChartData = (id) => {
-//     const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=500`
-//     fetch(url)
-//       .then(res => res.json())
-//       .then(data => {
-//         const newArray = []
-//         for (const object of data.prices){
-//             const newObject = {
-//                 x: object[0],
-//                 y: object[1]
-//             }
-//             newArray.push(newObject)
-//         }
-//         const reversedArray = newArray.reverse()
-//         setChartData(reversedArray)
-//       })
-//     //   console.log(chartData)
-//   }
-
   useEffect(() => {
     if(tokenFrom == null){
         return
@@ -194,7 +175,7 @@ const getChartData = async (id) => {
     return (
         <>
             
-              { chartData? <CoinChart chartData={chartData} tokenFrom={tokenFrom.symbol}/> : null }
+            <CoinChart chartData={chartData} tokenFrom={tokenFrom.symbol}/>
         <div className='swap-modal-wrapper'>
               <Box className='swap-modal'>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
