@@ -6,9 +6,10 @@ import TokenModal from '../components/TokenModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowsUpDown } from '@fortawesome/free-solid-svg-icons';
 import CoinChart from '../components/CoinChart';
+import styled from 'styled-components';
 
-const Swap = ({tokens, user}) => {
-    
+const Swap = ({ tokens, user }) => {
+
     const qs = require('qs');
     const Web3 = require('web3');
     const BigNumber = require('bignumber.js');
@@ -96,7 +97,7 @@ const Swap = ({tokens, user}) => {
             sellAmount: amount,
             // takerAddress: account
         }
-        const response = await fetch(`https://api.0x.org/swap/v1/quote?${qs.stringify(params)}`)
+        const response = await fetch(`https://api.0x.org/swap/v1/quote?${qs.stringify(params)}`);
         const swapQuoteJSON = await response.json();
 
         setToAmount(swapQuoteJSON.buyAmount / (10 ** tokenTo.decimals))
@@ -105,9 +106,9 @@ const Swap = ({tokens, user}) => {
     }
 
     useEffect(() => {
-      getQuote()
+        getQuote()
     }, [tokenFrom])
-    
+
 
     async function trySwap() {
 
@@ -127,22 +128,51 @@ const Swap = ({tokens, user}) => {
 
 
 
-    const ERC20TokenContract = new web3.eth.Contract(erc20Abi, fromTokenAddress);
-    console.log("setup erc20 token contract: ", ERC20TokenContract);
+        const ERC20TokenContract = new web3.eth.Contract(erc20Abi, fromTokenAddress);
+        console.log("setup erc20 token contract: ", ERC20TokenContract);
 
-    const maxApproval = new BigNumber(2).pow(256).minus(1);
+        const maxApproval = new BigNumber(2).pow(256).minus(1);
 
-    ERC20TokenContract.methods.approve(swapQuoteJSON.allowanceTarget, maxApproval)
-        .send({ from: takerAddress })
-        .then(tx => console.log("tx: ", tx))
+        ERC20TokenContract.methods.approve(swapQuoteJSON.allowanceTarget, maxApproval)
+            .send({ from: takerAddress })
+            .then(tx => console.log("tx: ", tx))
 
-    const receipt = await web3.eth.sendTransaction(swapQuoteJSON);
-    // console.log("receipt: ", receipt);
+        const receipt = await web3.eth.sendTransaction(swapQuoteJSON);
+        // console.log("receipt: ", receipt);
 
-    
-}
 
-const [chartData, setChartData] = useState(null)
+    }
+
+    const [chartData, setChartData] = useState(null)
+
+    const fetchChartData = (id) => {
+        const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=monthly`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                const newArray = []
+                for (const object of data.prices) {
+                    const newObject = {
+                        x: object[0],
+                        y: object[1]
+                    }
+                    newArray.push(newObject)
+                }
+                const reversedArray = newArray.reverse()
+                setChartData(reversedArray)
+            })
+        console.log(chartData)
+    }
+
+    useEffect(() => {
+        if (tokenFrom == null) {
+            return
+        } else {
+            const coinString = tokenFrom.name.toLowerCase()
+            fetchChartData(coinString)
+        }
+    }, [tokenFrom])
+
 
 const getChartData = async (id) => {
     return await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1&interval=monthly`)
@@ -173,41 +203,41 @@ const getChartData = async (id) => {
   
     return (
         <>
-            
-            <CoinChart chartData={chartData} tokenFrom={tokenFrom.symbol}/>
-        <div className='swap-modal-wrapper'>
-              <Box className='swap-modal'>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Token Swap
-                        </Typography>
+            {tokenFrom ?
+                <CoinChart chartData={chartData} tokenFrom={tokenFrom} />
+                : <div>"Null" </div>}
+            <div className='swap-modal-wrapper'>
+                <Box className='swap-modal'>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Token Swap
+                    </Typography>
 
-                        <Box className='swap-box'>
-                            <input className='token-input' type="text" placeholder='0.0' onBlur={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
-                            <div onClick={handleTokenModalFrom} className='token-dropdown'>
-                                {tokenFrom ? <img className='swapIMG' src={tokenFrom.logoURI}></img> : <h2>🔁</h2>}
-                                <h2>{tokenFrom && tokenFrom.symbol}</h2>
-                            </div>
-                            {tokens.length && <TokenModal tokenOpen={tokenOpenFrom} handleTokenModal={handleTokenModalFrom} tokens={tokens} handleTokenFromChange={handleTokenFromChange} />}
-                        </Box>
-                        {!isHovering &&
-                        <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown}/></div>
-                    }{isHovering &&
-                        <button className='token-button' onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowsUpDown} /></button>
-                     }
-                        
-
-                        <Box className='swap-box'>
-                            <input className='token-input' type="text" placeholder='0.0' value={toAmount} />
-                            <div onClick={handleTokenModalTo} className='token-dropdown'>
-                            {tokenTo ? <img className='swapIMG' src={tokenTo.logoURI}></img> : <h2>🔁</h2>}
-                                <h2>{tokenTo && tokenTo.symbol}</h2>
-                            </div>
-                            {tokens.length && <TokenModal tokenOpen={tokenOpenTo} handleTokenModal={handleTokenModalTo} tokens={tokens} handleTokenFromChange={handleTokenToChange} />}
-                        </Box>
-
-                        <button disabled={!user} onClick={trySwap}>SWAP</button>
+                    <Box className='swap-box'>
+                        <input className='token-input' type="text" placeholder='0.0' onKeyDown={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
+                        <div onClick={handleTokenModalFrom} className='token-dropdown'>
+                            {tokenFrom ? <img className='swapIMG' src={tokenFrom.logoURI}></img> : <h2>🔁</h2>}
+                            <h2>{tokenFrom && tokenFrom.symbol}</h2>
+                        </div>
+                        {tokens.length && <TokenModal tokenOpen={tokenOpenFrom} handleTokenModal={handleTokenModalFrom} tokens={tokens} handleTokenFromChange={handleTokenFromChange} />}
                     </Box>
-        </div>
+                    {!isHovering &&
+                        <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown} /></div>
+
+
+
+
+                    <Box className='swap-box'>
+                        <input className='token-input' type="text" placeholder='0.0' value={toAmount} />
+                        <div onClick={handleTokenModalTo} className='token-dropdown'>
+                            {tokenTo ? <img className='swapIMG' src={tokenTo.logoURI}></img> : <h2>🔁</h2>}
+                            <h2>{tokenTo && tokenTo.symbol}</h2>
+                        </div>
+                        {tokens.length && <TokenModal tokenOpen={tokenOpenTo} handleTokenModal={handleTokenModalTo} tokens={tokens} handleTokenFromChange={handleTokenToChange} />}
+                    </Box>
+
+                    <button disabled={!user} onClick={trySwap}>SWAP</button>
+                </Box>
+            </div>
         </>
     )
 }

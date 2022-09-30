@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
 import Button from '@mui/material/Button';
 
-const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther, web3 }) => {
+const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther, web3, maticPriceInUsd }) => {
 
     const enterLottery = async () => {
         try {
@@ -13,7 +13,7 @@ const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther,
                 from: userObj.address,
                 value: web3.utils.toWei(String(priceInEther), "ether"),
                 gas: 3000000,
-                gasPrice: null
+                gasPrice: 40000000000
             })
         } catch (err) {
             console.log(err.message);
@@ -26,45 +26,39 @@ const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther,
             from: userObj.address,
             value: 0,
             gas: 3000000,
-            gasPrice: null
+            gasPrice: 40000000000
         });
     }
 
-    const PickWinnerButton = async () => {
-        const contractOwnerAddress = await contract.methods.getOwnersAddress().call();
-        console.log(contractOwnerAddress);
-        return (
-            <button>hey</button>
-        )
-    }
 
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <Paper elevation={6} className="lotto-card">
-                <h1>{cardDetails.players} / {maxPlayers}</h1>
+            <div className="lotto-card">
+                <img src="static/Card-bg.svg" alt="" className="card-bg" />
+                <img className='life-buoy' src="static/life-buoy.svg" alt="" />
+                <div style={{ zIndex: '100' }} className="lotto-card">
 
-                <h2>Prize pot</h2>
-                <div className="pool-balance">
-                    <h1>{cardDetails.balance} </h1>
-                    <img src="/static/polygon-symbol-black.svg" alt="" className='polygon-symbol' />
+                    <div style={{ width: '100%', display: 'flex', alignContent: 'center', justifyContent: 'flex-end' }}>
+                        {cardDetails.ownerAddress == userObj.address && userObj.address ? <button onClick={pickWinner}>x</button> : ''}
+                    </div>
+
+                    <h1>{cardDetails.players} / {maxPlayers}</h1>
+                    <h2>Prize pot</h2>
+                    <Button variant="contained" style={{ background: '#7962ea' }} onClick={enterLottery} disabled={cardDetails.poolFull}>BUY TICKET</Button>
+                    <h2>{cardDetails.poolFull}</h2>
+                    <h2>${(priceInEther * maticPriceInUsd).toFixed(2)}/ticket</h2>
+                    <div style={{ width: '100%', display: 'flex', alignContent: 'center', justifyContent: 'flex-end' }}>
+                        <p>{cardDetails.usersTickets}x</p>
+                        <FontAwesomeIcon icon={faTicket} style={{ color: '#7962ea' }} />
+                    </div>
                 </div>
+            </div>
 
-                <Button variant="contained" onClick={enterLottery} disabled={cardDetails.poolFull}>BUY TICKET</Button>
-                {/* <button onClick={enterLottery} disabled={cardDetails.poolFull}>BUY TICKET</button> */}
-                <h2>{cardDetails.poolFull}</h2>
-                <h2>entry fee: {priceInEther}</h2>
-                <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-                </div>
-
-                <div style={{ width: '100%', display: 'flex', alignContent: 'center', justifyContent: 'flex-end' }}>
-                    <p>{cardDetails.usersTickets}x</p>
-                    <FontAwesomeIcon icon={faTicket} />
-                </div>
-
-                {/* <button onClick={pickWinner}>pick winner</button> */}
-            </Paper>
-            <h2>payout: {(priceInEther * maxPlayers).toFixed(2)}</h2>
+            <div className="pool-balance">
+                <img src="/static/polygon-symbol-black.svg" alt="" className='polygon-symbol' />
+                <h1>{cardDetails.balance}</h1>
+            </div>
 
         </div>
 
