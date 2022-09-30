@@ -20,7 +20,7 @@ function App() {
     fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org')
       .then(res => res.json())
       .then(data => {
-        const spliced = data.tokens.splice(0, 200)
+        const spliced = data.tokens.splice(0, 264)
         setTokens(spliced)})
   })
 
