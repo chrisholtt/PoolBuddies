@@ -45,9 +45,11 @@ const Swap = ({tokens, user}) => {
         setTokenOpenFrom(prev => !prev);
     }
     const wanincher = {
+        address: '0x111111111117dC0aa78b770fA6A738034120C302',
         name: '1inch',
         symbol: '1INCH',
-        logoURI: 'https://assets.coingecko.com/coins/images/13469/thumb/1inch-token.png?1608803028'
+        logoURI: 'https://assets.coingecko.com/coins/images/13469/thumb/1inch-token.png?1608803028',
+        decimals: 18,
     }
 
     // Token TO and FROM
