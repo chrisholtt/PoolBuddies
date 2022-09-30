@@ -100,8 +100,8 @@ const Swap = ({tokens, user}) => {
         const swapQuoteJSON = await response.json();
 
         setToAmount(swapQuoteJSON.buyAmount / (10 ** tokenTo.decimals))
-
         return swapQuoteJSON;
+        
     }
 
     useEffect(() => {
@@ -158,7 +158,6 @@ const getChartData = async (id) => {
         }
         const reversedArray = newArray.reverse()
         setChartData(reversedArray)
-        console.log(reversedArray)
       })
 }    
 
@@ -183,7 +182,7 @@ const getChartData = async (id) => {
                         </Typography>
 
                         <Box className='swap-box'>
-                            <input className='token-input' type="text" placeholder='0.0' onKeyDown={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
+                            <input className='token-input' type="text" placeholder='0.0' onBlur={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
                             <div onClick={handleTokenModalFrom} className='token-dropdown'>
                                 {tokenFrom ? <img className='swapIMG' src={tokenFrom.logoURI}></img> : <h2>🔁</h2>}
                                 <h2>{tokenFrom && tokenFrom.symbol}</h2>
