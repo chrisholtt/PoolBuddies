@@ -1,6 +1,9 @@
 import React from 'react'
 import Web3 from 'web3'
 import Paper from '@mui/material/Paper';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTicket } from '@fortawesome/free-solid-svg-icons';
+import Button from '@mui/material/Button';
 
 const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther, web3 }) => {
 
@@ -16,7 +19,6 @@ const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther,
             console.log(err.message);
         }
     }
-
 
 
     const pickWinner = async () => {
@@ -48,11 +50,16 @@ const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther,
                     <img src="/static/polygon-symbol-black.svg" alt="" className='polygon-symbol' />
                 </div>
 
-                <button onClick={enterLottery} disabled={cardDetails.poolFull}>BUY TICKET</button>
+                <Button variant="contained" onClick={enterLottery} disabled={cardDetails.poolFull}>BUY TICKET</Button>
+                {/* <button onClick={enterLottery} disabled={cardDetails.poolFull}>BUY TICKET</button> */}
                 <h2>{cardDetails.poolFull}</h2>
                 <h2>entry fee: {priceInEther}</h2>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-                    {/* <p>{contract.usersTicketCount}x</p> */}
+                </div>
+
+                <div style={{ width: '100%', display: 'flex', alignContent: 'center', justifyContent: 'flex-end' }}>
+                    <p>{cardDetails.usersTickets}x</p>
+                    <FontAwesomeIcon icon={faTicket} />
                 </div>
 
                 {/* <button onClick={pickWinner}>pick winner</button> */}
