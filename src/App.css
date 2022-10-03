@@ -341,7 +341,7 @@ transform: rotate(10deg);
 
 
 .footer-item {
-  margin-left: 20px;
+  margin-left: 35px;
   margin-top: 20px;
   padding: 10px;
   background-image: linear-gradient(to bottom, #c5a7ec, white);
@@ -372,6 +372,17 @@ transform: rotate(10deg);
 
 .footer ul li:hover{
   text-shadow: 2px 2px #b27afc;
+}
+
+
+.rjelly {
+  display: flex;
+  justify-content: space-between;
+}
+
+.coin {
+  position: relative;
+  bottom: 5px;
 }
 
 

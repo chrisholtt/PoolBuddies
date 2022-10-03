@@ -55,10 +55,13 @@ const Footer = () => {
 
 
             <div className="footer-item">
-                <h3>Royal Jelly</h3>
+                <div className="rjelly">
+                    <h3 >Royal Jelly</h3>
+                    <img className="coin" src="/static/RJellyCoin.png" width={40}></img>
+                </div>
                 <ul> 
                     <li><a href="">About</a></li>
-                    <li><a href="https://polygonscan.com/token/0xf5bf6ef2afb00f3a62ed11c9b1e7200470c230e5">Token Address</a></li>
+                    <li><a href="https://polygonscan.com/token/0xf5bf6ef2afb00f3a62ed11c9b1e7200470c230e5">View on Polygon</a></li>
                 </ul>
 
             </div>
