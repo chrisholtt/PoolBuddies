@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Swap from './pages/Swap';
 import Pools from './pages/Pools';
 import Nft from './pages/Nft';
+import Token from './pages/Token';
 import { useEffect, useState } from 'react';
 import Web3 from 'web3'
 import Home from './pages/Home';
@@ -104,6 +105,7 @@ function App() {
         <Route path="/swap" element={<Swap tokens={tokens} user={userObj} />} />
         <Route path="/pools" element={<Pools userObj={userObj} web3={web3} />} />
         <Route path="/nft" element={<Nft />} />
+        <Route path="/token" element={<Token />} />
       </Routes>
     </>
   );

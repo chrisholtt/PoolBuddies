@@ -313,3 +313,19 @@ transform: rotate(10deg);
 .polygon:hover{
   transform: scale(1.2);
 }
+
+.Token-Logo{
+  height: 300px;
+  width: 100%;
+  padding-top: 50px;
+  margin-bottom: 30px;
+}
+
+.total-supply{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.token-info{
+  margin-top: 20px;
+}
