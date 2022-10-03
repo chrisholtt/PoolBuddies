@@ -322,3 +322,7 @@ transform: rotate(10deg);
   text-align: center;
   margin-bottom: 30px;
 }
+
+.token-info{
+  margin-top: 20px;
+}

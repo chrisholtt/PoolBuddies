@@ -11,8 +11,8 @@ const token = () => {
         </div>
         <div>
             <h2>Welcome to Chlorine Token</h2>
-            <p>
-                This is our coin
+            <p className='token-info'>
+                This is our coin, like Dogecoin, Chlorine is a fun token to see how a community can come together and GROW.
             </p>
         </div>
         </>
