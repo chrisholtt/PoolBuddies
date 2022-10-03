@@ -6,7 +6,6 @@ import Pools from './pages/Pools';
 import Nft from './pages/Nft';
 import { useEffect, useState } from 'react';
 import Web3 from 'web3'
-import createContract5 from './contracts/lotteryContract5'
 import Home from './pages/Home';
 import CryptoTicker from './components/CryptoTicker';
 
@@ -14,12 +13,13 @@ function App() {
 
   const [tokens, setTokens] = useState([]);
   const [web3, setWeb3] = useState();
-  const [lotteryContract5, setLotteryContract5] = useState();
 
   useEffect(() => {
     fetch('https://gateway.ipfs.io/ipns/tokens.uniswap.org')
       .then(res => res.json())
-      .then(data => setTokens(data.tokens))
+      .then(data => {
+        const spliced = data.tokens.splice(0, 264)
+        setTokens(spliced)})
   })
 
   const [userObj, setUserObj] = useState({
@@ -62,7 +62,6 @@ function App() {
         handleUserSignIn(account);
         connectUser(true);
         // Create local instance of contracts
-        setLotteryContract5(createContract5(web3));
       }
     } catch (err) {
       console.log(err);
@@ -99,15 +98,11 @@ function App() {
   return (
     <>
       <Navbar handleUserSignIn={handleUserSignIn} userObj={userObj} onConnect={onConnect} disconnectUser={disconnectUser} />
-      <CryptoTicker/>
+      <CryptoTicker />
       <Routes>
-
-        <Route path="/swap" element={<Swap tokens={tokens} user={userObj} />} />
-        <Route path="/pools" element={<Pools lotteryContract5={lotteryContract5} userObj={userObj} web3={web3} />} />
-
         <Route path="/" element={<Home />} />
         <Route path="/swap" element={<Swap tokens={tokens} user={userObj} />} />
-        <Route path="/pools" element={<Pools />} />main
+        <Route path="/pools" element={<Pools userObj={userObj} web3={web3} />} />
         <Route path="/nft" element={<Nft />} />
       </Routes>
     </>

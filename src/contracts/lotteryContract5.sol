@@ -21,6 +21,10 @@ contract Lottery {
         return lotteryHistory[lottery];
     }
 
+    function getLotteryId() public view returns (uint256) {
+        return lotteryId;
+    }
+
     function getBalance() public view returns (uint256) {
         return address(this).balance;
     }
@@ -33,8 +37,18 @@ contract Lottery {
         return players.length;
     }
 
+    function getUsersTickets(address usersAdd) public view returns (uint256) {
+        uint256 tickets = 0;
+        for (uint256 i = 0; i < players.length; i++) {
+            if (usersAdd == players[i]) {
+                tickets += 1;
+            }
+        }
+        return tickets;
+    }
+
     function enter() public payable {
-        require(msg.value > .01 ether);
+        require(msg.value > 1 ether);
         require(players.length < maxCapacity);
         // address of player entering lottery
         players.push(payable(msg.sender));
