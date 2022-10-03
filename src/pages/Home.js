@@ -22,7 +22,7 @@ const Home = () => {
         <div className="base-content">
             <h1>Enter the Lottery!</h1>
             <h6>Buy your ticket on Polygon</h6> 
-            <img src="/static/polygon-symbol-black.svg" alt="" className='polygon'/>
+            <a className='polygon-link' href='/pools'><img src="/static/polygon-symbol-black.svg" alt="" className='polygon'/></a>
         </div>
         </>
     
