@@ -206,7 +206,9 @@ const Swap = ({ tokens, user }) => {
 
     return (
         <>
-                <CoinChart chartData={chartData} tokenFrom={tokenFrom.symbol} />
+            <div className="swap-page-wrapper">
+
+            <CoinChart chartData={chartData} tokenFrom={tokenFrom.symbol} />
             <div className='swap-modal-wrapper'>
                 <Box className='swap-modal'>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -237,6 +239,12 @@ const Swap = ({ tokens, user }) => {
                     <button className='token-swap' disabled={!user} onClick={trySwap}>SWAP</button>
                 </Box>
             </div>
+
+
+
+            </div>
+            
+            
         </>
     )
 }
