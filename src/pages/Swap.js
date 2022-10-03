@@ -6,7 +6,6 @@ import TokenModal from '../components/TokenModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowsUpDown } from '@fortawesome/free-solid-svg-icons';
 import CoinChart from '../components/CoinChart';
-import styled from 'styled-components';
 
 const Swap = ({ tokens, user }) => {
 
@@ -25,10 +24,8 @@ const Swap = ({ tokens, user }) => {
     }
 
     const handleClick = () => {
-        const tok1 = tokenFrom;
-        const tok2 = tokenTo;
-        setTokenFrom(tok2)
-        setTokenTo(tok1)
+        setTokenFrom(tokenTo)
+        setTokenTo(tokenFrom)
     }
 
     // Swap amount 
@@ -45,7 +42,7 @@ const Swap = ({ tokens, user }) => {
     const handleTokenModalFrom = () => {
         setTokenOpenFrom(prev => !prev);
     }
-    const wanincher = {
+    const oneInch = {
         address: '0x111111111117dC0aa78b770fA6A738034120C302',
         name: '1inch',
         symbol: '1INCH',
@@ -54,7 +51,7 @@ const Swap = ({ tokens, user }) => {
     }
 
     // Token TO and FROM
-    const [tokenFrom, setTokenFrom] = useState(wanincher);
+    const [tokenFrom, setTokenFrom] = useState(oneInch);
     const [tokenTo, setTokenTo] = useState(null);
 
     const handleTokenFromChange = (tokenObj) => {
@@ -212,15 +209,15 @@ const Swap = ({ tokens, user }) => {
                     </Typography>
 
                     <Box className='swap-box'>
-                        <input className='token-input' type="text" placeholder='0.0' onKeyDown={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
+                        <input className='token-input' type="text" placeholder='0.0' onBlur={handlePriceEstimate} value={fromAmount} onChange={(e) => setFromAmount(e.target.value)} />
                         <div onClick={handleTokenModalFrom} className='token-dropdown'>
                             {tokenFrom ? <img className='swapIMG' src={tokenFrom.logoURI}></img> : <h2>🔁</h2>}
                             <h2>{tokenFrom && tokenFrom.symbol}</h2>
                         </div>
                         {tokens.length && <TokenModal tokenOpen={tokenOpenFrom} handleTokenModal={handleTokenModalFrom} tokens={tokens} handleTokenFromChange={handleTokenFromChange} />}
                     </Box>
-                    {!isHovering &&
-                        <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown} /></div>
+                    {!isHovering ? <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown} /></div>
+                        : <button className='token-button' onClick={handleClick} onMouseOut={handleMouseOut}><FontAwesomeIcon icon={faArrowsUpDown}/></button>
                     }
 
                     <Box className='swap-box'>
