@@ -24,6 +24,7 @@ const Navbar = ({ userObj, handleUserSignIn, onConnect, disconnectUser }) => {
                     <li><NavLink to="/swap" activeClassName="active" style={{ textDecoration: 'none', color: "#000000" }}><h1>Swap</h1></NavLink></li>
                     <li><NavLink to="/pools" style={{ textDecoration: 'none', color: "#000000" }}><h1>Pools</h1></NavLink></li>
                     <li><NavLink to="/nft" style={{ textDecoration: 'none', color: "#000000" }}><h1>NFT</h1></NavLink></li>
+                    <li><NavLink to="/token" style={{ textDecoration: 'none', color: "#000000" }}><h1>OurToken</h1></NavLink></li>
                 </div>
             </ul>
 
