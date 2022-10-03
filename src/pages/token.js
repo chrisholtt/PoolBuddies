@@ -4,8 +4,16 @@ const token = () => {
     return (
         <>
         <img className='Token-Logo' src="/static/buddie-logo.svg"/>
+        <div className='total-supply'>
+            <h1>Total Supply:
+                100000
+            </h1>
+        </div>
         <div>
-            <h1>Welcome to Chlorine Token</h1>
+            <h2>Welcome to Chlorine Token</h2>
+            <p>
+                This is our coin
+            </p>
         </div>
         </>
     )
