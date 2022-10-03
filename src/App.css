@@ -190,6 +190,7 @@ body {
   /* background: red; */
   box-shadow: 4px 4px 10px #24242454;
   margin-left: 80px;
+  text-align: center;
 }
 
 .token-nodes{
@@ -212,6 +213,10 @@ body {
   font-size: 16px;
   color: purple;
   padding-left: 5px;
+
+.token-swap{
+  margin-right: 50px;
+
 }
 
 .swapIMG{
@@ -233,12 +238,13 @@ body {
 .token-button{
   background: #F0A9F8;
   color: black;
-  width: 30px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
   border-radius: 1rem;
   border: 1px;
   border-color: black;
   cursor: pointer;
+  margin: 0;
 }
 
 .token-input{
@@ -297,4 +303,8 @@ transform: rotate(10deg);
   width: 80%;
   margin-right: 6px;
   opacity: 0.3;
+}
+
+.polygon:hover{
+  transform: scale(1.2);
 }
