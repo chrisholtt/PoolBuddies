@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import LotteryCard from '../components/LotteryCard';
+import GuesserCard from '../components/GuesserCard';
 import Button from '@mui/material/Button';
 import createContract5 from '../contracts/lotteryContract5';
 import createContract10 from '../contracts/lotteryContract10';
 import createContract30 from '../contracts/lotteryContract30';
+import createContractGuesser from '../contracts/guesserContract';
 
 const Pools = ({ userObj, web3 }) => {
 
     const [totalValueOfAllPools, setTotalValueOfAllPools] = useState(0.00);
     const [maticPriceInUsd, setMaticPriceInUsd] = useState(0.00);
-    // Lottery contract
+
+    // Lottery contract states
     const [lotteryContract5, setLotteryContract5] = useState();
     const [lotteryContract10, setLotteryContract10] = useState();
     const [lotteryContract30, setLotteryContract30] = useState();
+    const [guesserContract, setGuesserContract] = useState();
+
 
 
 
@@ -47,18 +52,61 @@ const Pools = ({ userObj, web3 }) => {
         ownerAddress: ''
     });
 
+    const [guesserContractDetails, setGuesserContractDetails] = useState({
+        players: 0,
+        balance: 0,
+        address: '0xf9378a479E464E8413c498227Fbf9Cb74B1b843a',
+        winners: [],
+        usersTickets: 0,
+        ownersAddress: "0x57EC945135813e88F483b0697C3779f85397e387",
+        previousWinningNumber: 0
+    })
+
     // On page load fetch this (needs fixing)
     useEffect(() => {
         if (web3) {
             setLotteryContract5(createContract5(web3));
             setLotteryContract10(createContract10(web3));
             setLotteryContract30(createContract30(web3));
+            setGuesserContract(createContractGuesser(web3));
             getContract5Info();
             getContract10Info();
             getContract30Info();
+            getGuesserContractInfo();
             fetchMaticPrice();
         }
-    }, [userObj])
+    }, [userObj, web3])
+
+    const getGuesserContractInfo = async () => {
+        const players = await guesserContract.methods.getNumberOfPlayers().call();
+        // Setting players in state
+        setGuesserContractDetails((prev) => {
+            return { ...prev, players: players }
+        })
+
+        const balance = await guesserContract.methods.getBalance().call();
+        // Setting balance in state
+        setGuesserContractDetails((prev) => {
+            return { ...prev, balance: web3.utils.fromWei(balance, 'ether') }
+        })
+
+        const winners = await guesserContract.methods.getPreviousWinners().call();
+        // Setting winners in state
+        setGuesserContractDetails((prev) => {
+            return { ...prev, winners: winners }
+        })
+
+        const previousWinningNumber = await guesserContract.methods.getWinningNumber().call();
+        // Setting previous winning number in state
+        setGuesserContractDetails((prev) => {
+            return { ...prev, previousWinningNumber: previousWinningNumber }
+        })
+
+        const usersTicketCount = await guesserContract.methods.getUsersTickets(userObj.address).call();
+        setGuesserContractDetails((prev) => {
+            return { ...prev, usersTickets: usersTicketCount }
+        })
+    }
 
     const getContract5Info = async () => {
         const players5 = await lotteryContract5.methods.getPlayersLength().call();
@@ -163,7 +211,7 @@ const Pools = ({ userObj, web3 }) => {
 
     // When contracts value changes, update total value in all pools
     useEffect(() => {
-        const tvlAcrossAllPoolsInUsd = maticPriceInUsd * (Number(lotteryContract5Details.balance) + Number(lotteryContract10Details.balance) + Number(lotteryContract30Details.balance));
+        const tvlAcrossAllPoolsInUsd = maticPriceInUsd * (Number(lotteryContract5Details.balance) + Number(lotteryContract10Details.balance) + Number(lotteryContract30Details.balance) + Number(guesserContractDetails.balance));
         setTotalValueOfAllPools(tvlAcrossAllPoolsInUsd.toFixed(3));
     }, [lotteryContract5Details.balance]);
 
@@ -208,12 +256,12 @@ const Pools = ({ userObj, web3 }) => {
 
                 <container>
                     <div style={{ width: '90vw' }}>
-                        <h1>Dip and win</h1>
+                        <h1>Number guess</h1>
                     </div>
                     <div className='pools-container'>
-                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={0.011} web3={web3} maticPriceInUsd={maticPriceInUsd} />
-                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={0.011} web3={web3} maticPriceInUsd={maticPriceInUsd} />
-                        <LotteryCard contract={lotteryContract5} cardDetails={lotteryContract5Details} maxPlayers={5} userObj={userObj} priceInEther={0.011} web3={web3} maticPriceInUsd={maticPriceInUsd} />
+                        <GuesserCard contract={guesserContract} cardDetails={guesserContractDetails} userObj={userObj} priceInEther={1.005} web3={web3} maticPriceInUsd={maticPriceInUsd} />
+                        <GuesserCard contract={guesserContract} cardDetails={guesserContractDetails} userObj={userObj} priceInEther={1.005} web3={web3} maticPriceInUsd={maticPriceInUsd} />
+                        <GuesserCard contract={guesserContract} cardDetails={guesserContractDetails} userObj={userObj} priceInEther={1.005} web3={web3} maticPriceInUsd={maticPriceInUsd} />
                     </div>
                 </container>
 

@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Web3 from 'web3'
 import Paper from '@mui/material/Paper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicket } from '@fortawesome/free-solid-svg-icons';
 import Button from '@mui/material/Button';
 
-const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther, web3, maticPriceInUsd }) => {
+const GuesserCard = ({ contract, cardDetails, userObj, priceInEther, web3, maticPriceInUsd }) => {
+
+    const [guess, setGuess] = useState();
 
     const enterLottery = async () => {
         try {
-            await contract.methods.enter().send({
+            await contract.methods.enter(guess).send({
                 from: userObj.address,
                 value: web3.utils.toWei(String(priceInEther), "ether"),
                 gas: 3000000,
@@ -20,6 +22,12 @@ const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther,
         }
     }
 
+
+
+    const handleChange = (e) => {
+        const { value } = e.target;
+        setGuess(value);
+    }
 
     const pickWinner = async () => {
         const ownerAddress = await contract.methods.pickWinner().send({
@@ -36,17 +44,21 @@ const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther,
         <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div className="lotto-card">
                 <img src="static/Card-bg.svg" alt="" className="card-bg" />
-                <img className='life-buoy' src="static/life-buoy.svg" alt="" />
+                <img className='life-buoy' src="static/dice-bg.svg" alt="" />
                 <div style={{ zIndex: '100' }} className="lotto-card">
 
                     <div style={{ width: '100%', display: 'flex', alignContent: 'center', justifyContent: 'flex-end' }}>
-                        {cardDetails.ownerAddress == userObj.address && userObj.address && cardDetails.players == maxPlayers ? <button onClick={pickWinner} style={{ posistion: 'absolute' }}>pick winner</button> : ''}
+                        {cardDetails.ownerAddress == userObj.address && userObj.address ? <button onClick={pickWinner}>x</button> : ''}
                     </div>
 
-                    <h1>{cardDetails.players} / {maxPlayers} players</h1>
+                    <h1>{cardDetails.players} players</h1>
                     <h2>Prize pot</h2>
-                    <Button variant="contained" style={{ background: '#7962ea' }} onClick={enterLottery} disabled={cardDetails.poolFull}>BUY TICKET</Button>
-                    <h2>{cardDetails.poolFull}</h2>
+
+                    <form onSubmit={enterLottery} style={{ display: 'flex', flexDirection: 'column' }}>
+                        <input type="number" min={1} max={10} onChange={handleChange} required placeholder='enter guess' />
+                        <Button variant="contained" type="submit" style={{ background: '#7962ea' }}>BUY TICKET</Button>
+                    </form>
+
                     <h2>${(priceInEther * maticPriceInUsd).toFixed(2)}/ticket</h2>
                     <div style={{ width: '100%', display: 'flex', alignContent: 'center', justifyContent: 'flex-end' }}>
                         <p>{cardDetails.usersTickets}x</p>
@@ -65,4 +77,4 @@ const LotteryCard = ({ contract, cardDetails, maxPlayers, userObj, priceInEther,
     )
 }
 
-export default LotteryCard
+export default GuesserCard
