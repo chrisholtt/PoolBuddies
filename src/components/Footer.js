@@ -2,6 +2,7 @@ import React from "react";
 
 
 
+
 const Footer = () => {
 
 
@@ -22,6 +23,8 @@ const Footer = () => {
                 <h3>Stay Connected</h3>
 
                 <ul> 
+            
+        
                     <li><a href="">Instagram</a></li>
                     <li><a href="">Facebook</a></li>
                     <li><a href="">Bebo</a></li>
@@ -46,6 +49,16 @@ const Footer = () => {
                 <ul> 
                     <li><a href="">Next Steps</a></li>
                     <li><a href="">ReadMe</a></li>
+                </ul>
+
+            </div>
+
+
+            <div className="footer-item">
+                <h3>Royal Jelly</h3>
+                <ul> 
+                    <li><a href="">About</a></li>
+                    <li><a href="https://polygonscan.com/token/0xf5bf6ef2afb00f3a62ed11c9b1e7200470c230e5">Token Address</a></li>
                 </ul>
 
             </div>

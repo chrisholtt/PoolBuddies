@@ -115,6 +115,7 @@ body {
   background: wheat;
   border: none; 
   margin-bottom: 17px;
+  margin-right: 20px;
 }
 
 .connected-symbol {
@@ -340,8 +341,12 @@ transform: rotate(10deg);
 
 
 .footer-item {
-  margin-left: 50px;
+  margin-left: 20px;
   margin-top: 20px;
+  padding: 10px;
+  background-image: linear-gradient(to bottom, #c5a7ec, white);
+  width: 250px;
+  border-radius: 5px;
 }
 
 
