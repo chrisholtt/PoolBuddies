@@ -289,3 +289,7 @@ transform: rotate(10deg);
   margin-right: 6px;
   opacity: 0.3;
 }
+
+.polygon:hover{
+  transform: scale(1.2);
+}
