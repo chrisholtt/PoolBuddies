@@ -24,8 +24,11 @@ const Swap = ({ tokens, user }) => {
     }
 
     const handleClick = () => {
+        if(tokenTo == null){
+            return
+        } else {
         setTokenFrom(tokenTo)
-        setTokenTo(tokenFrom)
+        setTokenTo(tokenFrom)}
     }
 
     // Swap amount 
@@ -218,8 +221,8 @@ const Swap = ({ tokens, user }) => {
                         </div>
                         {tokens.length && <TokenModal tokenOpen={tokenOpenFrom} handleTokenModal={handleTokenModalFrom} tokens={tokens} handleTokenFromChange={handleTokenFromChange} />}
                     </Box>
-                    {!isHovering ? <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown} /></div>
-                        : <button className='token-button' onClick={handleClick} onMouseOut={handleMouseOut}><FontAwesomeIcon icon={faArrowsUpDown}/></button>
+                    {!isHovering ? <button className='token-swap' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick}><FontAwesomeIcon icon={faArrowDown} /></button>
+                        : <button className='token-swap' onClick={handleClick} onMouseOut={handleMouseOut}><FontAwesomeIcon onMouseOver={handleMouseOver} icon={faArrowsUpDown}/></button>
                     }
 
                     <Box className='swap-box'>
@@ -231,7 +234,7 @@ const Swap = ({ tokens, user }) => {
                         {tokens.length && <TokenModal tokenOpen={tokenOpenTo} handleTokenModal={handleTokenModalTo} tokens={tokens} handleTokenFromChange={handleTokenToChange} />}
                     </Box>
 
-                    <button disabled={!user} onClick={trySwap}>SWAP</button>
+                    <button className='token-swap' disabled={!user} onClick={trySwap}>SWAP</button>
                 </Box>
             </div>
         </>
