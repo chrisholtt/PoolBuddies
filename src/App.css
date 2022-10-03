@@ -190,6 +190,7 @@ color: black;
   /* background: red; */
   box-shadow: 4px 4px 10px #24242454;
   margin-left: 80px;
+  text-align: center;
 }
 
 .token-nodes{
