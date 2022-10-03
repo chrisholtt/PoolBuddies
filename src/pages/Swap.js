@@ -171,6 +171,7 @@ const Swap = ({ tokens, user }) => {
             const coinString = tokenFrom.name.toLowerCase()
             fetchChartData(coinString)
         }
+        
     }, [tokenFrom])
 
 
@@ -199,6 +200,7 @@ const Swap = ({ tokens, user }) => {
             getChartData(coinString)
         }
     }, [tokenFrom])
+
 
 
 

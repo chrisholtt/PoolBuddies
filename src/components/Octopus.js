@@ -7,11 +7,10 @@ export default function Octopus() {
   return (
     <>
     <div className='octopus-div'>
-        <img src='/static/Octopus.jpg' className='octopus' />
+      <img src="/static/jelly-fish.gif" style={{pointerEvents: 'none'}} className='octopus'></img>
     </div>
-    
     </>  
-    
+
   );
 }
 
