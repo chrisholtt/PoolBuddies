@@ -3,8 +3,10 @@ import React from 'react'
 const token = () => {
     return (
         <>
-        <img src="/static/buddie-logo.svg"/>
-        <div>Welcome to Chlorine Token</div>
+        <img className='Token-Logo' src="/static/buddie-logo.svg"/>
+        <div>
+            <h1>Welcome to Chlorine Token</h1>
+        </div>
         </>
     )
 }
