@@ -105,9 +105,10 @@ body {
   align-items: center;
   border-radius: 50px;
   width: 150px;
-  height: 35px;
+  height: 40px;
   background: wheat;
-  border: none;
+  border: none; 
+  margin-bottom: 17px;
 }
 
 .connected-symbol {
