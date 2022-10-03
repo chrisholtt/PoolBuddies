@@ -57,11 +57,13 @@ const CoinChart = ({chartData, tokenFrom}) => {
 }
 
 const Wrapper = styled.div`
-    position: absolute;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-    right: 38%;
-    top: 22%;
-    border-radius: 4rem;
+ margin-left: 60px;
+ margin-top: 40px;
+ border-radius: 25px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.20);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  
 `
 
 export default CoinChart;

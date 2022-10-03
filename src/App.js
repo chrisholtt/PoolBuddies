@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import Web3 from 'web3'
 import Home from './pages/Home';
 import CryptoTicker from './components/CryptoTicker';
+import Footer from './components/Footer'
+
 
 function App() {
 
@@ -107,6 +109,7 @@ function App() {
         <Route path="/nft" element={<Nft />} />
         <Route path="/token" element={<Token />} />
       </Routes>
+      <Footer/>
     </>
   );
 }
