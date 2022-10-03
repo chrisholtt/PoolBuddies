@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Swap from './pages/Swap';
 import Pools from './pages/Pools';
 import Nft from './pages/Nft';
-import Token from './pages/Token';
+import Token from './pages/token';
 import { useEffect, useState } from 'react';
 import Web3 from 'web3'
 import Home from './pages/Home';
