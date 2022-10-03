@@ -1,6 +1,6 @@
 import React from 'react'
 
-const token = () => {
+const Token = () => {
     return (
         <>
         <img className='Token-Logo' src="/static/buddie-logo.svg"/>
@@ -19,4 +19,4 @@ const token = () => {
     )
 }
 
-export default token
+export default Token;
