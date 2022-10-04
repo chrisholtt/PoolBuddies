@@ -25,11 +25,11 @@ const Footer = () => {
                 <ul> 
             
         
-                    <li><a href="">Instagram</a></li>
-                    <li><a href="">Facebook</a></li>
-                    <li><a href="">Bebo</a></li>
-                    <li><a href="">MySpace</a></li>
-                    <li><a href="">Tinder</a></li>
+                    <li><a href="https://www.instagram.com/poolbuddiesrjelly/">Instagram</a></li>
+                    <li><a href="https://en-gb.facebook.com/">Facebook</a></li>
+                    <li><a href="https://bebo.com/">Bebo</a></li>
+                    <li><a href="https://myspace.com/discover/featured">MySpace</a></li>
+                    <li><a href="https://tinder.com/en-GB">Tinder</a></li>
                 </ul>
 
             </div>
@@ -38,8 +38,8 @@ const Footer = () => {
                 <h3>Where dem Devs at?</h3>
 
                 <ul> 
-                    <li><a href=""></a>LinkedIn</li>
-                    <li><a href="">GitHub</a></li>
+                    <li><a href="https://linktr.ee/poolbuddies">LinkedIn</a></li>
+                    <li><a href="https://github.com/chrisholtt/PoolBuddies">GitHub</a></li>
                 </ul>
 
             </div>
@@ -61,7 +61,7 @@ const Footer = () => {
                 </div>
                 <ul> 
                     <li><a href="">About</a></li>
-                    <li><a href="https://polygonscan.com/token/0xf5bf6ef2afb00f3a62ed11c9b1e7200470c230e5">View on Polygon</a></li>
+                    <li><a href="https://polygonscan.com/token/0x7db631592b994bdd2f080306a464042c6cefa002">View on Polygon</a></li>
                 </ul>
 
             </div>
@@ -70,7 +70,7 @@ const Footer = () => {
                 <h3>Contact</h3>
                 <ul> 
                     <li>Email the team:</li>
-                    <li><input type="email" placeholder="Email:"></input></li>
+                    <li><input type="email" placeholder="Email:" className="email-input"></input></li>
                 </ul>
 
             </div>

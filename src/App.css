@@ -361,6 +361,7 @@ transform: rotate(10deg);
   font-size: 20px;
   list-style-type: none;
   text-decoration: none;
+  cursor: pointer;
 }
 
 
@@ -385,6 +386,17 @@ transform: rotate(10deg);
   bottom: 5px;
 }
 
+.email-input {
+  border: #F0A9F8;
+  border-radius: 10px;
+  height: 20px;
+  width: 200px;
+  font-size: 16px;
+  color: purple;
+  padding-left: 5px;
+
+}
+
 
 
 .Token-Logo{
@@ -402,4 +414,6 @@ transform: rotate(10deg);
 .token-info{
   margin-top: 20px;
 }
+
+
 
