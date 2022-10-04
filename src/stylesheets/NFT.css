@@ -1,0 +1,10 @@
+.nft {
+    position: relative;
+    left: 38%;
+    background-color: #c5a7ec;
+    border-radius: 10px;
+    width: 300px;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+}
