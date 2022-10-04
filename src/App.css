@@ -341,8 +341,9 @@ transform: rotate(10deg);
 
 
 .footer-item {
-  margin-left: 35px;
+  margin-left: 17px;
   margin-top: 20px;
+  margin-right: 17px;
   padding: 10px;
   background-image: linear-gradient(to bottom, #c5a7ec, white);
   width: 250px;
