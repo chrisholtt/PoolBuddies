@@ -1,8 +1,6 @@
-/* .home-content {
-    display: flex;
-} */
-
-
+.home-content {
+    height: 1100px;
+}
 
 
 .title-div {
@@ -11,7 +9,7 @@
     text-align: left;
     position: relative;
     left: 750px;
-    bottom: 750px;
+    bottom: 1000px;
     font-size: 40px;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);;
     border-radius: 10px;
@@ -19,9 +17,11 @@
     padding-bottom: 100px;
     padding-left: 30px;
     width: 600px;
+    height: 300px;
     background-color: #c5a7ec;
     border: 1px solid #c5a7ec;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+
 }
 
 
@@ -42,6 +42,8 @@ button {
     cursor: pointer;
 }
 
+
+
 button:hover {
     color: white;
     background-color: purple;
@@ -54,26 +56,27 @@ button:hover {
 
 .octopus {
     position: relative;
-    right:0;
-    height: 850px;
+    right: 200px;
+    bottom: 70px;
+    height: 1100px;
     margin-left: 30px;
-    object-fit: scale-down;
-    overflow: hidden;
+    /* object-fit: scale-down;
+    overflow: hidden; */
+    /* border: 1px solid black; */
 }
 
 
 
-
-.base-content {
+.base-content { 
     position: relative;
-    bottom: 200px;
-    left: 24%;
+    left: 23%;
     font-size: 30px;
     text-align: center;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);;
     border-radius: 10px;
     padding-top: 30px;
     padding-bottom: 100px;
+    margin-bottom: 100px;
     width: 800px;
     height: 300px;
     background-color: #c5a7ec;
