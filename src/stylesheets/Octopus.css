@@ -57,12 +57,12 @@ button:hover {
 .octopus {
     position: relative;
     right: 200px;
-    bottom: 70px;
+    bottom: 20px;
     height: 1100px;
     margin-left: 30px;
-    /* object-fit: scale-down;
-    overflow: hidden; */
-    /* border: 1px solid black; */
+    object-fit: scale-down;
+    overflow: hidden; 
+    
 }
 
 
