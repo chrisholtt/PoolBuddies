@@ -1,11 +1,24 @@
 import React from "react";
+import emailjs from '@emailjs/browser';
 
 
 
 
 const Footer = () => {
 
+    function sendEmail(e) {
+        e.preventDefault();
 
+    emailjs.sendForm('service_7enyx4v', 'template_p62xm52', e.target, 'SO5KGCO4uCm2bYmkq')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset()
+  };
+
+    
 
     return(
 
@@ -68,10 +81,16 @@ const Footer = () => {
 
             <div className="footer-item">
                 <h3>Contact</h3>
-                <ul> 
-                    <li>Email the team:</li>
-                    <li><input type="email" placeholder="Email:" className="email-input"></input></li>
-                </ul>
+                <form onSubmit={sendEmail}> 
+                   <ul>
+                    <h3>Email the Team:</h3>
+                    <br></br>
+                    <input type='text' placeholder="Your Email" className="email-input" name="email"></input>
+                    <input type='text' placeholder="Subject" name="subject" className="email-input"></input>
+                    <input type='text' placeholder="Your Message" name="message" className="email-input"></input>
+                    <button type="submit">Submit</button>
+                    </ul>
+                </form>
 
             </div>
 

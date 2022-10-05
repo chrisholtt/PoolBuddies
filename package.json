@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^3.7.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -17,6 +18,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^3.9.1",
+    "emailjs": "^4.0.1",
+    "emailjs-com": "^3.2.0",
     "highcharts": "^10.2.1",
     "highcharts-react-official": "^3.1.0",
     "moralis-v1": "^1.11.0",
