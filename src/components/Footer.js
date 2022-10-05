@@ -73,7 +73,7 @@ const Footer = () => {
                     <img className="coin" src="/static/RJellyCoin.png" width={40}></img>
                 </div>
                 <ul> 
-                    <li><a href="">About</a></li>
+                    <li><a href="/token">About</a></li>
                     <li><a href="https://polygonscan.com/token/0x7db631592b994bdd2f080306a464042c6cefa002">View on Polygon</a></li>
                 </ul>
 
