@@ -337,6 +337,7 @@ transform: rotate(10deg);
 
 .footer-flex {
   display: flex;
+  justify-content: center;
 }
 
 
